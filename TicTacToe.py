@@ -70,11 +70,10 @@ def CheckWin():
 		if WinConditions[i] == (X, X, X):
 			winner = "X"
 			print winner
-			print WinConditions[i]
+			print winner + " wins using WinCondition",WinConditions[i]
 		if WinConditions[i] == (O, O, O):
 			winner = "X"
-			print winner
-			print WinConditions[i]
+			print winner + " wins using WinCondition",WinConditions[i]
 		i += 1
 
 def Process():
