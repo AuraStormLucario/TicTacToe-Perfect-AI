@@ -235,8 +235,8 @@ def Main(turn):
 		turn += 1
 		if winner is not empty:
 			turn += turn + (8 - turn)
-			print winner + " Is tne Winner, The Computer " + end[0] + ", You " + end[1] + "!\n"
+			print winner + " Is tne Winner!\n"
 		if winner is empty and turn > 8:
-			print "The Game Is a Tie\n"
+			print "The Game Is a Tie.\n"
 
 Main(turn)
