@@ -59,7 +59,7 @@ def WhoGoesFirst():
 		order = [X, O, X, O, X, O, X, O, X]
 	if choice == O:
 		order = [O, X, O, X, O, X, O, X, O]
-	print "this is the order: ",order
+	print order,"is the order."
 	print player + " is the player." 
 	print cpu + " is the cpu."
 
