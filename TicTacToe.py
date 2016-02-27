@@ -59,8 +59,9 @@ def WhoGoesFirst():
 		order = [X, O, X, O, X, O, X, O, X]
 	if choice == O:
 		order = [O, X, O, X, O, X, O, X, O]
-	print order
-	print player + " is the player and " + cpu + " is the cpu"
+	print "this is the order: ",order
+	print player + " is the player." 
+	print cpu + " is the cpu."
 
 def CheckWin():
 	global winner
