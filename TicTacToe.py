@@ -5,7 +5,6 @@ import random
 
 X = "X"
 O = "O"
-Letters = [X, O]
 empty = " "	
 S = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 turn = 0
@@ -24,7 +23,7 @@ def Instructions():
 	print "  4 | 5 | 6"
 	print "  ---------"
 	print "  7 | 8 | 9"
-	print "\nIf you get 3 Of your leters in a row, (horizontally, vertically, or diagonally), you win!\nGood Luck!\n"
+	print "\nIf you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!\nGood luck!\n"
 
 def Lines(): # all win conditions
 	global WinConditions, row1, row2, row3, col1, col2, col3, dia1, dia2
@@ -54,15 +53,14 @@ def Letter():
 def WhoGoesFirst():
 	Letter()
 	global order
-	print player + cpu
-	choice = random.choice(Letters)
+	choice = random.choice('XO')
 	print choice + " will go first"
 	if choice == X:
 		order = [X, O, X, O, X, O, X, O, X]
 	if choice == O:
 		order = [O, X, O, X, O, X, O, X, O]
 	print order
-	print player + " is the player and " + cpu + "is the cpu"
+	print player + " is the player and " + cpu + " is the cpu"
 
 def CheckWin():
 	global winner
