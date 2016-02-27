@@ -234,7 +234,7 @@ def Main(turn):
 				MoveCPU(turn)
 		turn += 1
 		if winner is not empty:
-			turn += turn + (8 - turn)
+			turn = 9
 			print winner + " Is tne Winner!\n"
 		if winner is empty and turn > 8:
 			print "The Game Is a Tie.\n"
