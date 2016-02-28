@@ -218,10 +218,10 @@ def Main(turn):
 	WhoGoesFirst()
 	while turn < 9:
 		if order[turn] == player:
-			print turn
+			print "turn:",turn
 			MovePlayer(turn)
 		if order[turn] == cpu:
-			print "turn: " + turn
+			print "turn:",turn
 			if turn == 0:
 				ZEROMoveCPU(turn)
 			if turn == 1:
