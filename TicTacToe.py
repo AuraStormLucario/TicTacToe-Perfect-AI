@@ -153,13 +153,11 @@ def Restrict():
 	print "After CWin"
 
 def ZEROMoveCPU(turn):
-	global ZERO
 	moveC = random.randint(0, 4)
 	while S[moveC * 2] is not empty or moveC == 2:
 		moveC = random.randint(0, 4)
 	print str(moveC) + " is random intiger"
 	S[moveC * 2] = order[turn]
-	ZERO = moveC * 2
 	print "The Computer will go on space: " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
 	Process()
 
