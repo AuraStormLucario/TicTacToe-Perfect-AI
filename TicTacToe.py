@@ -223,8 +223,11 @@ main(turn)
 ''' 
 Issues
 - Add function to recognize move that makes fork
-- Simplify cpu_win()
-- Simplify cpu_block()
-- Simplify assign_letter()
-- Simplify main(turn)
+- Try to eliminate globals variables
+- Simplify Functions]
+	- assign_letter()
+	- cpu_win()
+	- cpu_block()
+	- main(turn)
+
 '''
