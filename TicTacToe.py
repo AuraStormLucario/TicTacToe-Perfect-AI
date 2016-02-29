@@ -215,7 +215,7 @@ def Main(turn): # combines function into complete game
 	WhoGoesFirst()
 	Process()
 	while turn < 9: # gameplay in this loop
-		print "turn:",int(turn + 1)
+		print "turn:",turn + 1
 		if order[turn] == player:
 			MovePlayer(turn)
 		if order[turn] == cpu:
