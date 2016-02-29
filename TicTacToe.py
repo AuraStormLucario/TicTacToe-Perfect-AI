@@ -41,9 +41,9 @@ def Lines(): # all win conditions
 
 def Letter(): # assigns chosen letter to player
 	global player, cpu
-	cpu = ""
+	cpu = empty
 	player = raw_input('What letter would you like to be: ')
-	while not (player == "X" or player == "O" or player == "x" or player == "o"):
+	while not (player == ("X" or "O" or "x" or "o")):
 		player = raw_input('What letter would you like to be: ')
 	if player == X or player == 'x':
 		player = X
