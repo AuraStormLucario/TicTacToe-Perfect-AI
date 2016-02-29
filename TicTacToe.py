@@ -209,7 +209,7 @@ def Main(turn): # combines function into complete game
 				CPUMove(turn)
 		Board()
 		Lines()
-		Checkwin()
+		CheckWin()
 		turn += 1
 		if winner is not empty:
 			turn = 9
