@@ -3,8 +3,8 @@
 
 import random
 
-X = "X" # define both letters
-O = "O" # define both letters
+X = "X" # define X
+O = "O" # define O
 empty = " " # define an empty space
 S = [" "] * 9 # array of 9 spaces
 turn = 1 # turn counter
