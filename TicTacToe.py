@@ -6,7 +6,7 @@ import random
 X = "X" # define both letters
 O = "O" # define both letters
 empty = " " # define an empty space
-S = [" ", " ", " ", " ", " ", " ", " ", " ", " "] # array of 9 spaces
+S = [" "] * 9 # array of 9 spaces
 turn = 0 # turn counter
 
 def Instructions():
