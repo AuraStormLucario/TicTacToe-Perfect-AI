@@ -77,11 +77,6 @@ def CheckWin():
 			print winner + " wins using WinCondition",WinConditions[i]
 		i += 1
 
-def Process(): # process of following 3 functions used at end of each turn
-	Board()
-	Lines()
-	CheckWin()
-
 def PlayerMove(turn): # function for player's move
 	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
@@ -89,7 +84,6 @@ def PlayerMove(turn): # function for player's move
 		moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
-	Process()
 
 def CPUWin(): # checks if cpu can win
 	global moveC
@@ -149,7 +143,6 @@ def CPUMoveZero(turn): # cpu move for turn 0
 	print moveC,"is random intiger"
 	S[moveC * 2] = order[turn]
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
-	Process()
 
 def CPUMoveOne(turn): # cpu move for turn 1
 	moveC = 2
@@ -160,7 +153,6 @@ def CPUMoveOne(turn): # cpu move for turn 1
 	print moveC,"is random intiger"
 	S[moveC * 2] = order[turn]
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
-	Process()
 
 def CPUMoveTwo(turn): # cpu move for turn 2
 	if (S[1] or S[3] or S[5] or S[7]) == player:
@@ -185,7 +177,6 @@ def CPUMoveTwo(turn): # cpu move for turn 2
 		if S[8] == cpu:
 			S[0] = order[turn]
 			print "The Computer will go on space 1 index 0"
-	Process()
 
 def CPUMove(turn): # cpu move for turns > 2
 	global moveC
@@ -197,12 +188,12 @@ def CPUMove(turn): # cpu move for turns > 2
 	print moveC,"Final Option for Move C"
 	S[moveC] = order[turn]
 	print "The Computer will go on space",moveC + 1,"index",moveC
-	Process()
 
 def Main(turn): # combines function into complete game
 	Instructions()
 	WhoGoesFirst()
-	Process()
+	Board()
+	Lines()
 	while turn < 9: # gameplay runs in this loop
 		print "turn:",turn + 1
 		if order[turn] == player:
@@ -216,6 +207,9 @@ def Main(turn): # combines function into complete game
 				CPUMoveTwo(turn)
 			if turn > 2:
 				CPUMove(turn)
+		Board()
+		Lines()
+		Checkwin()
 		turn += 1
 		if winner is not empty:
 			turn = 9
