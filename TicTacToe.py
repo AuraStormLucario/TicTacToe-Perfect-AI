@@ -83,9 +83,9 @@ def Process():
 
 def MovePlayer(turn):
 	global moveP
-	moveP = raw_input('Choose a Space from 1-9 for',order[turn],'to Go: ')
+	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
-		moveP = raw_input('Choose a Space from 1-9 for',order[turn],'to Go: ')
+		moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 	Process()
