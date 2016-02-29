@@ -67,14 +67,13 @@ def WhoGoesFirst(): # randomly chooses order of turns
 
 def CheckWin():
 	global winner
-	winner = " "
+	winner = empty
 	for i in range(0, 8):
 		if WinConditions[i] == (X, X, X):
 			winner = "X"
-			print winner
 			print winner + " wins using WinCondition",WinConditions[i]
 		if WinConditions[i] == (O, O, O):
-			winner = "X"
+			winner = "O"
 			print winner + " wins using WinCondition",WinConditions[i]
 		i += 1
 
