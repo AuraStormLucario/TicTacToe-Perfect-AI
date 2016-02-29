@@ -175,7 +175,7 @@ def ONEMoveCPU(turn): # cpu move for turn 1
 def TWOMoveCPU(turn): # cpu move for turn 2
 	if (S[1] or S[3] or S[5] or S[7]) == player:
 		S[4] = order[turn]
-		print "The Computer will go on space: 4 index 5"
+		print "The Computer will go on space 5 index 4"
 	if (S[0] or S[2] or S[6] or S[8]) == player:
 		moveC = random.randint(0, 4)
 		while S[moveC * 2] is not empty or moveC == 2:
@@ -184,18 +184,17 @@ def TWOMoveCPU(turn): # cpu move for turn 2
 		print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	if S[4] == player:
 		if S[0] == cpu:
-			moveC = 0
 			S[8] = order[turn]
+			print "The Computer will go on space 9 index 8"
 		if S[2] == cpu:
-			moveC = 2
 			S[6] = order[turn]
+			print "The Computer will go on space 7 index 6"
 		if S[6] == cpu:
-			moveC = 6
 			S[2] = order[turn]
+			print "The Computer will go on space 3 index 2"
 		if S[8] == cpu:
-			moveC = 8
 			S[0] = order[turn]
-		print "The Computer will go on space",moveC + 1,"index",moveC
+			print "The Computer will go on space 1 index 0"
 	Process()
 
 def MoveCPU(turn): # cpu move for turns > 2
@@ -242,7 +241,6 @@ Main(turn)
 Issues
 - Simplify CWin()
 - Simplify CBlock()
-- Review TWOMoveCPU()
 - Simplify Letter()
 - Simplify Main(turn)
 '''
