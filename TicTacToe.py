@@ -27,17 +27,18 @@ def Board(): # prints board
 	print " ","---------"
 	print " ",S[6],"|",S[7],"|",S[8],"\n"
 
-def Lines(): # all win conditions
-	global WinConditions, row1, row2, row3, col1, col2, col3, dia1, dia2
-	row1 = (S[0], S[1], S[2])
-	row2 = (S[3], S[4], S[5])
-	row3 = (S[6], S[7], S[8])
-	col1 = (S[0], S[3], S[6])
-	col2 = (S[1], S[4], S[7])
-	col3 = (S[2], S[5], S[8])
-	dia1 = (S[0], S[4], S[8])
-	dia2 = (S[2], S[4], S[6])
-	WinConditions = [row1, row2, row3, col1, col2, col3, dia1, dia2] # array of winconditions
+def Lines(): # array of win conditions
+	global WinConditions
+	WinConditions = [
+		(S[0], S[1], S[2]),
+		(S[3], S[4], S[5]),
+		(S[6], S[7], S[8]),
+		(S[0], S[3], S[6]),
+		(S[1], S[4], S[7]),
+		(S[2], S[5], S[8]),
+		(S[0], S[4], S[8]),
+		(S[2], S[4], S[6])
+	]
 
 def Letter(): # assigns chosen letter to player
 	global player, cpu
@@ -88,45 +89,45 @@ def PlayerMove(turn): # function for player's move
 def CPUWin(): # checks if cpu can win
 	global moveC
 	print moveC
-	if row1 == (empty, cpu, cpu) or col1 == (empty, cpu, cpu) or dia1 == (empty, cpu, cpu):
+	if WinConditions[0] == (empty, cpu, cpu) or WinConditions[3] == (empty, cpu, cpu) or WinConditions[6] == (empty, cpu, cpu):
 		moveC = 0
-	if row1 == (cpu, empty, cpu) or col2 == (empty, cpu, cpu):
+	if WinConditions[0] == (cpu, empty, cpu) or WinConditions[4] == (empty, cpu, cpu):
 		moveC = 1
-	if row1 == (cpu, cpu, empty) or col3 == (empty, cpu, cpu) or dia2 == (empty, cpu, cpu):
+	if WinConditions[0] == (cpu, cpu, empty) or WinConditions[5] == (empty, cpu, cpu) or WinConditions[7] == (empty, cpu, cpu):
 		moveC = 2
-	if row2 == (empty, cpu, cpu) or col1 == (cpu, empty, cpu):
+	if WinConditions[1] == (empty, cpu, cpu) or WinConditions[3] == (cpu, empty, cpu):
 		moveC = 3
-	if row2 == (cpu, empty, cpu) or col2 == (cpu, empty, cpu) or dia1 == (cpu, empty, cpu) or dia2 == (cpu, empty, cpu):
+	if WinConditions[1] == (cpu, empty, cpu) or WinConditions[4] == (cpu, empty, cpu) or WinConditions[6] == (cpu, empty, cpu) or WinConditions[7] == (cpu, empty, cpu):
 		moveC = 4
-	if row2 == (cpu, cpu, empty) or col3 == (cpu, empty, cpu):
+	if WinConditions[1] == (cpu, cpu, empty) or WinConditions[5] == (cpu, empty, cpu):
 		moveC = 5
-	if row3 == (empty, cpu, cpu) or col1 == (cpu, cpu, empty) or dia2 == (cpu, cpu, empty):
+	if WinConditions[2] == (empty, cpu, cpu) or WinConditions[3] == (cpu, cpu, empty) or WinConditions[7] == (cpu, cpu, empty):
 		moveC = 6
-	if row3 == (cpu, empty, cpu) or col2 == (cpu, cpu, empty):
+	if WinConditions[2] == (cpu, empty, cpu) or WinConditions[4] == (cpu, cpu, empty):
 		moveC = 7
-	if row3 == (cpu, cpu, empty) or col3 == (cpu, cpu, empty) or dia1 == (cpu, cpu, empty):
+	if WinConditions[2] == (cpu, cpu, empty) or WinConditions[5] == (cpu, cpu, empty) or WinConditions[6] == (cpu, cpu, empty):
 		moveC = 8
 
 def CPUBlock(): # checks if player can win (blocks forks)
 	global moveC
 	print moveC
-	if row1 == (empty, player, player) or col1 == (empty, player, player) or dia1 == (empty, player, player):
+	if WinConditions[0] == (empty, player, player) or WinConditions[3] == (empty, player, player) or WinConditions[6] == (empty, player, player):
 		moveC = 0
-	if row1 == (player, empty, player) or col2 == (empty, player, player):
+	if WinConditions[0] == (player, empty, player) or WinConditions[4] == (empty, player, player):
 		moveC = 1
-	if row1 == (player, player, empty) or col3 == (empty, player, player) or dia2 == (empty, player, player):
+	if WinConditions[0] == (player, player, empty) or WinConditions[5] == (empty, player, player) or WinConditions[7] == (empty, player, player):
 		moveC = 2
-	if row2 == (empty, player, player) or col1 == (player, empty, player):
+	if WinConditions[1] == (empty, player, player) or WinConditions[3] == (player, empty, player):
 		moveC = 3
-	if row2 == (player, empty, player) or col2 == (player, empty, player) or dia1 == (player, empty, player) or dia2 == (player, empty, player):
+	if WinConditions[1] == (player, empty, player) or WinConditions[4] == (player, empty, player) or WinConditions[6] == (player, empty, player) or WinConditions[7] == (player, empty, player):
 		moveC = 4
-	if row2 == (player, player, empty) or col3 == (player, empty, player):
+	if WinConditions[1] == (player, player, empty) or WinConditions[5] == (player, empty, player):
 		moveC = 5
-	if row3 == (empty, player, player) or col1 == (player, player, empty) or dia2 == (player, player, empty):
+	if WinConditions[2] == (empty, player, player) or WinConditions[3] == (player, player, empty) or WinConditions[7] == (player, player, empty):
 		moveC = 6
-	if row3 == (player, empty, player) or col2 == (player, player, empty):
+	if WinConditions[2] == (player, empty, player) or WinConditions[4] == (player, player, empty):
 		moveC = 7
-	if row3 == (player, player, empty) or col3 == (player, player, empty) or dia1 == (player, player, empty):
+	if WinConditions[2] == (player, player, empty) or WinConditions[5] == (player, player, empty) or WinConditions[6] == (player, player, empty):
 		moveC = 8
 
 def Restrict(): # combines previous 2 restrictions into 1 function
