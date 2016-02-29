@@ -87,8 +87,7 @@ def MovePlayer(turn):
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
 		moveP = raw_input('Choose a Space from 1-9 for ' + str(order[turn]) + ' to Go: ')
 	S[int(moveP) - 1] = order[turn]
-	print "move" + str(int(moveP) - 1)
-	print "turn" + str(turn)
+	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 	Process()
 
 def CWin():
@@ -158,7 +157,7 @@ def ZEROMoveCPU(turn):
 		moveC = random.randint(0, 4)
 	print str(moveC) + " is random intiger"
 	S[moveC * 2] = order[turn]
-	print "The Computer will go on space: " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
+	print "The Computer will go on space " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
 	Process()
 
 def ONEMoveCPU(turn):
@@ -169,14 +168,13 @@ def ONEMoveCPU(turn):
 			moveC = random.randint(0, 4)
 	print str(moveC) + " is random intiger"
 	S[moveC * 2] = order[turn]
-	print "The Computer will go on space: " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
+	print "The Computer will go on space " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
 	Process()
 
 def TWOMoveCPU(turn):
 	if (S[1] or S[3] or S[5] or S[7]) == player:
-		moveC = 4
-		S[moveC] = order[turn]
-		print "The Computer will go on space: " + str(moveC + 1) + " index " + str(moveC)
+		S[4] = order[turn]
+		print "The Computer will go on space: 4 index 5"
 	if (S[0] or S[2] or S[6] or S[8]) == player:
 		moveC = random.randint(0, 4)
 		while S[moveC * 2] is not empty or moveC == 2:
@@ -195,7 +193,7 @@ def TWOMoveCPU(turn):
 		if S[8] == cpu:
 			moveC = 8
 			S[0] = order[turn]
-		print "The Computer will go on space: " + str(moveC + 1) + " index " + str(moveC)
+		print "The Computer will go on space " + str(moveC + 1) + " index " + str(moveC)
 	Process()
 
 def MoveCPU(turn):
@@ -208,7 +206,7 @@ def MoveCPU(turn):
 	Restrict()
 	print str(moveC) + " Final Option for Move C"
 	S[moveC] = order[turn]
-	print "The Computer will go on space: " + str(moveC + 1) + " index " + str(moveC)
+	print "The Computer will go on space " + str(moveC + 1) + " index " + str(moveC)
 	Process()
 
 def Main(turn):
