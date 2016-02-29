@@ -53,8 +53,8 @@ def Letter(): # assigns chosen letter to player
 		cpu = X
 
 def WhoGoesFirst(): # randomly chooses order of turns
-	Letter()
 	global order
+	Letter()
 	choice = random.choice('XO')
 	print choice + " will go first"
 	if choice == X:
