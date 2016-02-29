@@ -215,7 +215,7 @@ def main(turn): # combines function into complete game
 		if winner is not empty:
 			turn = 10
 			print winner + " Is tne Winner!\n"
-		if winner is empty and turn == 9:
+		if winner is empty and turn == 10:
 			print "The Game Is a Tie.\n"
 
 main(turn)
