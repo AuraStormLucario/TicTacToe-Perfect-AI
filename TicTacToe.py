@@ -17,13 +17,15 @@ def Board():
 	print " ",S[6],"|",S[7],"|",S[8],"\n"
 
 def Instructions():
-	print "This is a game of Tic Tac Toe, the computer will never lose.\nFill in spaces on the board according to the board printed below.\n"
+	print "This is a game of Tic Tac Toe, the computer will never lose."
+	print "Fill in spaces on the board according to the board printed below.\n"
 	print "  1 | 2 | 3"
 	print "  ---------"
 	print "  4 | 5 | 6"
 	print "  ---------"
-	print "  7 | 8 | 9"
-	print "\nIf you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!\nGood luck!\n"
+	print "  7 | 8 | 9\n"
+	print "If you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!"
+	print "Good luck!\n"
 
 def Lines(): # all win conditions
 	global WinConditions, row1, row2, row3, col1, col2, col3, dia1, dia2
