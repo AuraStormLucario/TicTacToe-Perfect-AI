@@ -221,7 +221,7 @@ def main(turn): # combines function into complete game
 main(turn)
 
 ''' 
-Issues
+Issues:
 - Add function to recognize move that makes fork
 - Try to eliminate globals variables
 - Simplify Functions]
