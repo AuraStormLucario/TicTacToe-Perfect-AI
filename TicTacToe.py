@@ -114,36 +114,26 @@ def CWin(): # checks if cpu can win
 		moveC = 8
 
 def CBlock(): # checks if player can win (blocks forks)
-	global moveC, BlockFork
+	global moveC
 	print moveC
 	if row1 == (empty, player, player) or col1 == (empty, player, player) or dia1 == (empty, player, player):
 		moveC = 0
-		BlockFork.append(moveC)
 	if row1 == (player, empty, player) or col2 == (empty, player, player):
 		moveC = 1
-		BlockFork.append(moveC)
 	if row1 == (player, player, empty) or col3 == (empty, player, player) or dia2 == (empty, player, player):
 		moveC = 2
-		BlockFork.append(moveC)
 	if row2 == (empty, player, player) or col1 == (player, empty, player):
 		moveC = 3
-		BlockFork.append(moveC)
 	if row2 == (player, empty, player) or col2 == (player, empty, player) or dia1 == (player, empty, player) or dia2 == (player, empty, player):
 		moveC = 4
-		BlockFork.append(moveC)
 	if row2 == (player, player, empty) or col3 == (player, empty, player):
 		moveC = 5
-		BlockFork.append(moveC)
 	if row3 == (empty, player, player) or col1 == (player, player, empty) or dia2 == (player, player, empty):
 		moveC = 6
-		BlockFork.append(moveC)
 	if row3 == (player, empty, player) or col2 == (player, player, empty):
 		moveC = 7
-		BlockFork.append(moveC)
 	if row3 == (player, player, empty) or col3 == (player, player, empty) or dia1 == (player, player, empty):
 		moveC = 8
-		BlockFork.append(moveC)
-	print "LIST",BlockFork
 
 def Restrict(): # combines previous 2 restrictions into 1 function
 	print "Before CBlock"
@@ -198,8 +188,7 @@ def TWOMoveCPU(turn): # cpu move for turn 2
 	Process()
 
 def MoveCPU(turn): # cpu move for turns > 2
-	global moveC, BlockFork
-	BlockFork = []
+	global moveC
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
 		moveC = random.randint(0, 8)
