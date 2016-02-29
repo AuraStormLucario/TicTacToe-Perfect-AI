@@ -7,7 +7,7 @@ X = "X" # define both letters
 O = "O" # define both letters
 empty = " " # define an empty space
 S = [" "] * 9 # array of 9 spaces
-turn = 0 # turn counter
+turn = 1 # turn counter
 
 def Instructions():
 	print "This is a game of Tic Tac Toe, the computer will never lose."
@@ -58,9 +58,9 @@ def WhoGoesFirst(): # randomly chooses order of turns
 	choice = random.choice('XO')
 	print choice + " will go first"
 	if choice == X:
-		order = [X, O, X, O, X, O, X, O, X]
+		order = [" ", X, O, X, O, X, O, X, O, X]
 	if choice == O:
-		order = [O, X, O, X, O, X, O, X, O]
+		order = [" ", O, X, O, X, O, X, O, X, O]
 	print order,"is the order."
 	print player + " is the player."
 	print cpu + " is the cpu."
@@ -136,7 +136,7 @@ def Restrict(): # combines previous 2 restrictions into 1 function
 	CPUWin()
 	print "After CPUWin"
 
-def CPUMoveZero(turn): # cpu move for turn 0
+def CPUMoveOne(turn): # cpu move for turn 0
 	moveC = random.randint(0, 4)
 	while S[moveC * 2] is not empty or moveC == 2:
 		moveC = random.randint(0, 4)
@@ -144,7 +144,7 @@ def CPUMoveZero(turn): # cpu move for turn 0
 	S[moveC * 2] = order[turn]
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 
-def CPUMoveOne(turn): # cpu move for turn 1
+def CPUMoveTwo(turn): # cpu move for turn 1
 	moveC = 2
 	while S[moveC * 2] is not empty:
 		moveC = random.randint(0, 4)
@@ -154,7 +154,7 @@ def CPUMoveOne(turn): # cpu move for turn 1
 	S[moveC * 2] = order[turn]
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 
-def CPUMoveTwo(turn): # cpu move for turn 2
+def CPUMoveThree(turn): # cpu move for turn 2
 	if (S[1] or S[3] or S[5] or S[7]) == player:
 		S[4] = order[turn]
 		print "The Computer will go on space 5 index 4"
@@ -194,25 +194,25 @@ def Main(turn): # combines function into complete game
 	WhoGoesFirst()
 	Board()
 	Lines()
-	while turn < 9: # gameplay runs in this loop
+	while turn < 10: # gameplay runs in this loop
 		print "turn:",turn + 1
 		if order[turn] == player:
 			PlayerMove(turn)
 		if order[turn] == cpu:
-			if turn == 0:
-				CPUMoveZero(turn)
 			if turn == 1:
 				CPUMoveOne(turn)
 			if turn == 2:
 				CPUMoveTwo(turn)
-			if turn > 2:
+			if turn == 3:
+				CPUMoveThree(turn)
+			if turn > 3:
 				CPUMove(turn)
 		Board()
 		Lines()
 		CheckWin()
 		turn += 1
 		if winner is not empty:
-			turn = 9
+			turn = 10
 			print winner + " Is tne Winner!\n"
 		if winner is empty and turn == 9:
 			print "The Game Is a Tie.\n"
