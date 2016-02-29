@@ -5,7 +5,7 @@ import random
 
 X = "X"
 O = "O"
-empty = " "	
+empty = " "
 S = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 turn = 0
 
@@ -49,7 +49,7 @@ def Letter(): # assigns chosen letter to player
 		player = X
 		cpu = O
 	if player == O or player == "o":
-		player = O 
+		player = O
 		cpu = X
 
 def WhoGoesFirst(): # randomly chooses order of turns
@@ -62,7 +62,7 @@ def WhoGoesFirst(): # randomly chooses order of turns
 	if choice == O:
 		order = [O, X, O, X, O, X, O, X, O]
 	print order,"is the order."
-	print player + " is the player." 
+	print player + " is the player."
 	print cpu + " is the cpu."
 
 def CheckWin():
@@ -94,7 +94,7 @@ def MovePlayer(turn): # function for player's move
 def CWin(): # checks if cpu can win
 	global moveC
 	print moveC
-	if row1 == (empty, cpu, cpu) or col1 == (empty, cpu, cpu) or dia1 == (empty, cpu, cpu): 
+	if row1 == (empty, cpu, cpu) or col1 == (empty, cpu, cpu) or dia1 == (empty, cpu, cpu):
 		moveC = 0
 	if row1 == (cpu, empty, cpu) or col2 == (empty, cpu, cpu):
 		moveC = 1
@@ -116,7 +116,7 @@ def CWin(): # checks if cpu can win
 def CBlock(): # checks if player can win (blocks forks)
 	global moveC, BlockFork
 	print moveC
-	if row1 == (empty, player, player) or col1 == (empty, player, player) or dia1 == (empty, player, player): 
+	if row1 == (empty, player, player) or col1 == (empty, player, player) or dia1 == (empty, player, player):
 		moveC = 0
 		BlockFork.append(moveC)
 	if row1 == (player, empty, player) or col2 == (empty, player, player):
