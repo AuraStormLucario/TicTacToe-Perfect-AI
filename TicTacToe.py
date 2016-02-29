@@ -3,11 +3,11 @@
 
 import random
 
-X = "X"
-O = "O"
-empty = " "
-S = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
-turn = 0
+X = "X" # define both letters
+O = "O" # define both letters
+empty = " " # define an empty space
+S = [" ", " ", " ", " ", " ", " ", " ", " ", " "] # array of 9 spaces
+turn = 0 # turn counter
 
 def Board(): # prints board
 	print "\n ",S[0],"|",S[1],"|",S[2]
@@ -37,7 +37,7 @@ def Lines(): # all win conditions
 	col3 = (S[2], S[5], S[8])
 	dia1 = (S[0], S[4], S[8])
 	dia2 = (S[2], S[4], S[6])
-	WinConditions = [row1, row2, row3, col1, col2, col3, dia1, dia2]
+	WinConditions = [row1, row2, row3, col1, col2, col3, dia1, dia2] # array of winconditions
 
 def Letter(): # assigns chosen letter to player
 	global player, cpu
