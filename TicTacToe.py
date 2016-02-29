@@ -180,6 +180,7 @@ def TWOMoveCPU(turn):
 		while S[moveC * 2] is not empty or moveC == 2:
 			moveC = random.randint(0, 4)
 		S[moveC * 2] = order[turn]
+		print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	if S[4] == player:
 		if S[0] == cpu:
 			moveC = 0
