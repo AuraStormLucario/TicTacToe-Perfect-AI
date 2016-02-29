@@ -214,9 +214,8 @@ def MoveCPU(turn): # cpu move for turns > 2
 
 def Main(turn): # combines function into complete game
 	Instructions()
-	Lines()
-	Board()
 	WhoGoesFirst()
+	Process()
 	while turn < 9: # gameplay in this loop
 		if order[turn] == player:
 			print "turn:",turn
