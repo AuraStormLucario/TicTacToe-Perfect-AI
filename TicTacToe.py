@@ -229,5 +229,5 @@ Issues:
 	- cpu_win()
 	- cpu_block()
 	- main(turn)
-
+- Change tabs to 4 spaces
 '''
