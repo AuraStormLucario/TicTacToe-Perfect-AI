@@ -1,6 +1,5 @@
-# Perfect Tic Tac Toe AI, it will never lose. (might force tie when it can still win, will fix asap)
-# Created and programmed by Jordan Oberstein.
-
+# Perfect TicTacToe AI, will never lose, programmed by Jordan Oberstein.
+																									
 import random
 
 X = "X" # define X
