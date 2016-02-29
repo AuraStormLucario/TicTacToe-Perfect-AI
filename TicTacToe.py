@@ -9,7 +9,7 @@ empty = " "
 S = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 turn = 0
 
-def Board():
+def Board(): # prints board
 	print "\n ",S[0],"|",S[1],"|",S[2]
 	print " ","---------"
 	print " ",S[3],"|",S[4],"|",S[5]
@@ -39,7 +39,7 @@ def Lines(): # all win conditions
 	dia2 = (S[2], S[4], S[6])
 	WinConditions = [row1, row2, row3, col1, col2, col3, dia1, dia2]
 
-def Letter():
+def Letter(): # assigns chosen letter to player
 	global player, cpu
 	cpu = ""
 	player = raw_input('What letter would you like to be: ')
@@ -52,7 +52,7 @@ def Letter():
 		player = O 
 		cpu = X
 
-def WhoGoesFirst():
+def WhoGoesFirst(): # randomly chooses order of turns
 	Letter()
 	global order
 	choice = random.choice('XO')
@@ -78,12 +78,12 @@ def CheckWin():
 			print winner + " wins using WinCondition",WinConditions[i]
 		i += 1
 
-def Process():
+def Process(): # process of following 3 functions used at end of each turn
 	Board()
 	Lines()
 	CheckWin()
 
-def MovePlayer(turn):
+def MovePlayer(turn): # function for player's move
 	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
@@ -92,7 +92,7 @@ def MovePlayer(turn):
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 	Process()
 
-def CWin():
+def CWin(): # checks if cpu can win
 	global moveC
 	print moveC
 	if row1 == (empty, cpu, cpu) or col1 == (empty, cpu, cpu) or dia1 == (empty, cpu, cpu): 
@@ -114,7 +114,7 @@ def CWin():
 	if row3 == (cpu, cpu, empty) or col3 == (cpu, cpu, empty) or dia1 == (cpu, cpu, empty):
 		moveC = 8
 
-def CBlock():
+def CBlock(): # checks if player can win (blocks forks)
 	global moveC, BlockFork
 	print moveC
 	if row1 == (empty, player, player) or col1 == (empty, player, player) or dia1 == (empty, player, player): 
@@ -146,14 +146,14 @@ def CBlock():
 		BlockFork.append(moveC)
 	print "LIST",BlockFork
 
-def Restrict():
+def Restrict(): # combines previous 2 restrictions into 1 function
 	print "Before CBlock"
 	CBlock()
 	print "Between CWin and CBlock"
 	CWin()
 	print "After CWin"
 
-def ZEROMoveCPU(turn):
+def ZEROMoveCPU(turn): # cpu move for turn 0
 	moveC = random.randint(0, 4)
 	while S[moveC * 2] is not empty or moveC == 2:
 		moveC = random.randint(0, 4)
@@ -162,7 +162,7 @@ def ZEROMoveCPU(turn):
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	Process()
 
-def ONEMoveCPU(turn):
+def ONEMoveCPU(turn): # cpu move for turn 1
 	moveC = 2
 	while S[moveC * 2] is not empty:
 		moveC = random.randint(0, 4)
@@ -173,7 +173,7 @@ def ONEMoveCPU(turn):
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	Process()
 
-def TWOMoveCPU(turn):
+def TWOMoveCPU(turn): # cpu move for turn 2
 	if (S[1] or S[3] or S[5] or S[7]) == player:
 		S[4] = order[turn]
 		print "The Computer will go on space: 4 index 5"
@@ -199,7 +199,7 @@ def TWOMoveCPU(turn):
 		print "The Computer will go on space",moveC + 1,"index",moveC
 	Process()
 
-def MoveCPU(turn):
+def MoveCPU(turn): # cpu move for turns > 2
 	global moveC, BlockFork
 	BlockFork = []
 	moveC = random.randint(0, 8)
@@ -212,12 +212,12 @@ def MoveCPU(turn):
 	print "The Computer will go on space",moveC + 1,"index",moveC
 	Process()
 
-def Main(turn):
+def Main(turn): # combines function into complete game
 	Instructions()
 	Lines()
 	Board()
 	WhoGoesFirst()
-	while turn < 9:
+	while turn < 9: # gameplay in this loop
 		if order[turn] == player:
 			print "turn:",turn
 			MovePlayer(turn)
