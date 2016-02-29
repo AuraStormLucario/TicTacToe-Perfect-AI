@@ -9,13 +9,6 @@ empty = " " # define an empty space
 S = [" ", " ", " ", " ", " ", " ", " ", " ", " "] # array of 9 spaces
 turn = 0 # turn counter
 
-def Board(): # prints board
-	print "\n ",S[0],"|",S[1],"|",S[2]
-	print " ","---------"
-	print " ",S[3],"|",S[4],"|",S[5]
-	print " ","---------"
-	print " ",S[6],"|",S[7],"|",S[8],"\n"
-
 def Instructions():
 	print "This is a game of Tic Tac Toe, the computer will never lose."
 	print "Fill in spaces on the board according to the board printed below.\n"
@@ -26,6 +19,13 @@ def Instructions():
 	print "  7 | 8 | 9\n"
 	print "If you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!"
 	print "Good luck!\n"
+
+def Board(): # prints board
+	print "\n ",S[0],"|",S[1],"|",S[2]
+	print " ","---------"
+	print " ",S[3],"|",S[4],"|",S[5]
+	print " ","---------"
+	print " ",S[6],"|",S[7],"|",S[8],"\n"
 
 def Lines(): # all win conditions
 	global WinConditions, row1, row2, row3, col1, col2, col3, dia1, dia2
