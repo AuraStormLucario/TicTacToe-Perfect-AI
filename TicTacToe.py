@@ -83,9 +83,9 @@ def Process():
 
 def MovePlayer(turn):
 	global moveP
-	moveP = raw_input('Choose a Space from 1-9 for ' + str(order[turn]) + ' to Go: ')
+	moveP = raw_input('Choose a Space from 1-9 for',order[turn],'to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
-		moveP = raw_input('Choose a Space from 1-9 for ' + str(order[turn]) + ' to Go: ')
+		moveP = raw_input('Choose a Space from 1-9 for',order[turn],'to Go: ')
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 	Process()
@@ -142,7 +142,7 @@ def CBlock():
 	if row3 == (player, player, empty) or col3 == (player, player, empty) or dia1 == (player, player, empty):
 		moveC = 8
 		BlockFork.append(moveC)
-	print "LIST" + str(BlockFork)
+	print "LIST",BlockFork
 
 def Restrict():
 	print "Before CBlock"
@@ -155,9 +155,9 @@ def ZEROMoveCPU(turn):
 	moveC = random.randint(0, 4)
 	while S[moveC * 2] is not empty or moveC == 2:
 		moveC = random.randint(0, 4)
-	print str(moveC) + " is random intiger"
+	print moveC,"is random intiger"
 	S[moveC * 2] = order[turn]
-	print "The Computer will go on space " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
+	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	Process()
 
 def ONEMoveCPU(turn):
@@ -166,9 +166,9 @@ def ONEMoveCPU(turn):
 		moveC = random.randint(0, 4)
 		while S[moveC * 2] is not empty:
 			moveC = random.randint(0, 4)
-	print str(moveC) + " is random intiger"
+	print moveC,"is random intiger"
 	S[moveC * 2] = order[turn]
-	print "The Computer will go on space " + str((moveC * 2) + 1) + " index " + str(moveC * 2)
+	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	Process()
 
 def TWOMoveCPU(turn):
@@ -193,7 +193,7 @@ def TWOMoveCPU(turn):
 		if S[8] == cpu:
 			moveC = 8
 			S[0] = order[turn]
-		print "The Computer will go on space " + str(moveC + 1) + " index " + str(moveC)
+		print "The Computer will go on space",moveC + 1,"index",moveC
 	Process()
 
 def MoveCPU(turn):
@@ -202,11 +202,11 @@ def MoveCPU(turn):
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
 		moveC = random.randint(0, 8)
-	print str(moveC) + " random move, placeholder"
+	print moveC,"random move, placeholder"
 	Restrict()
-	print str(moveC) + " Final Option for Move C"
+	print moveC,"Final Option for Move C"
 	S[moveC] = order[turn]
-	print "The Computer will go on space " + str(moveC + 1) + " index " + str(moveC)
+	print "The Computer will go on space",moveC + 1,"index",moveC
 	Process()
 
 def Main(turn):
