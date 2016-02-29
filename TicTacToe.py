@@ -228,5 +228,8 @@ Issues:
 	- cpu_win()
 	- cpu_block()
 	- main(turn)
+
+Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 - Change tabs to 4 spaces
+- Make all lines < 80 characters (comments < 72)
 '''
