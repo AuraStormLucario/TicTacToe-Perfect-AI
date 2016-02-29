@@ -237,3 +237,12 @@ def Main(turn): # combines function into complete game
 			print "The Game Is a Tie.\n"
 
 Main(turn)
+
+''' 
+Issues
+- Simplify CWin()
+- Simplify CBlock()
+- Review TWOMoveCPU()
+- Simplify Letter()
+- Simplify Main(turn)
+'''
