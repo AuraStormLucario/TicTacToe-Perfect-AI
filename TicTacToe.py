@@ -82,7 +82,7 @@ def Process(): # process of following 3 functions used at end of each turn
 	Lines()
 	CheckWin()
 
-def MovePlayer(turn): # function for player's move
+def PlayerMove(turn): # function for player's move
 	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
@@ -91,7 +91,7 @@ def MovePlayer(turn): # function for player's move
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 	Process()
 
-def CWin(): # checks if cpu can win
+def CPUWin(): # checks if cpu can win
 	global moveC
 	print moveC
 	if row1 == (empty, cpu, cpu) or col1 == (empty, cpu, cpu) or dia1 == (empty, cpu, cpu):
@@ -113,7 +113,7 @@ def CWin(): # checks if cpu can win
 	if row3 == (cpu, cpu, empty) or col3 == (cpu, cpu, empty) or dia1 == (cpu, cpu, empty):
 		moveC = 8
 
-def CBlock(): # checks if player can win (blocks forks)
+def CPUBlock(): # checks if player can win (blocks forks)
 	global moveC
 	print moveC
 	if row1 == (empty, player, player) or col1 == (empty, player, player) or dia1 == (empty, player, player):
@@ -136,13 +136,13 @@ def CBlock(): # checks if player can win (blocks forks)
 		moveC = 8
 
 def Restrict(): # combines previous 2 restrictions into 1 function
-	print "Before CBlock"
-	CBlock()
-	print "Between CWin and CBlock"
-	CWin()
-	print "After CWin"
+	print "Before CPUBlock"
+	CPUBlock()
+	print "Between CPUWin and CPUBlock"
+	CPUWin()
+	print "After CPUWin"
 
-def ZEROMoveCPU(turn): # cpu move for turn 0
+def CPUMoveZero(turn): # cpu move for turn 0
 	moveC = random.randint(0, 4)
 	while S[moveC * 2] is not empty or moveC == 2:
 		moveC = random.randint(0, 4)
@@ -151,7 +151,7 @@ def ZEROMoveCPU(turn): # cpu move for turn 0
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	Process()
 
-def ONEMoveCPU(turn): # cpu move for turn 1
+def CPUMoveOne(turn): # cpu move for turn 1
 	moveC = 2
 	while S[moveC * 2] is not empty:
 		moveC = random.randint(0, 4)
@@ -162,7 +162,7 @@ def ONEMoveCPU(turn): # cpu move for turn 1
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	Process()
 
-def TWOMoveCPU(turn): # cpu move for turn 2
+def CPUMoveTwo(turn): # cpu move for turn 2
 	if (S[1] or S[3] or S[5] or S[7]) == player:
 		S[4] = order[turn]
 		print "The Computer will go on space 5 index 4"
@@ -187,7 +187,7 @@ def TWOMoveCPU(turn): # cpu move for turn 2
 			print "The Computer will go on space 1 index 0"
 	Process()
 
-def MoveCPU(turn): # cpu move for turns > 2
+def CPUMove(turn): # cpu move for turns > 2
 	global moveC
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
@@ -203,19 +203,19 @@ def Main(turn): # combines function into complete game
 	Instructions()
 	WhoGoesFirst()
 	Process()
-	while turn < 9: # gameplay in this loop
+	while turn < 9: # gameplay runs in this loop
 		print "turn:",turn + 1
 		if order[turn] == player:
-			MovePlayer(turn)
+			PlayerMove(turn)
 		if order[turn] == cpu:
 			if turn == 0:
-				ZEROMoveCPU(turn)
+				CPUMoveZero(turn)
 			if turn == 1:
-				ONEMoveCPU(turn)
+				CPUMoveOne(turn)
 			if turn == 2:
-				TWOMoveCPU(turn)
+				CPUMoveTwo(turn)
 			if turn > 2:
-				MoveCPU(turn)
+				CPUMove(turn)
 		turn += 1
 		if winner is not empty:
 			turn = 9
@@ -227,8 +227,8 @@ Main(turn)
 
 ''' 
 Issues
-- Simplify CWin()
-- Simplify CBlock()
+- Simplify CPUWin()
+- Simplify CPUBlock()
 - Simplify Letter()
 - Simplify Main(turn)
 '''
