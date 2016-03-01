@@ -140,8 +140,6 @@ def cpu_move_turn_one(turn): # cpu move for turn 0, corner
 	moveC = random.randint(0, 4)
 	while S[moveC * 2] is not empty or moveC == 2:
 		moveC = random.randint(0, 4)
-		while S[moveC * 2] is not empty: # is this loop needed?
-			moveC = random.randint(0, 4)
 	print moveC,"is random intiger"
 	S[moveC * 2] = order[turn]
 	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
