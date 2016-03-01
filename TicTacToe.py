@@ -106,7 +106,7 @@ def cpu_win(): # checks if cpu can win
 	if WinConditions[2] == (cpu, cpu, empty) or WinConditions[5] == (cpu, cpu, empty) or WinConditions[6] == (cpu, cpu, empty):
 		moveC = 8
 
-def cpu_block(): # checks if player can win (blocks forks)
+def cpu_block(): # checks if player can win
 	global moveC
 	print moveC
 	if WinConditions[0] == (empty, player, player) or WinConditions[3] == (empty, player, player) or WinConditions[6] == (empty, player, player):
