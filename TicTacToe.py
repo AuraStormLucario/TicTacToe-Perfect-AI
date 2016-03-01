@@ -76,7 +76,7 @@ def check_win():
 			print winner + " wins using WinCondition",WinConditions[i]
 		i += 1
 
-def player_move(turn): # function for player's move
+def player_move(turn): 
 	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
@@ -84,49 +84,36 @@ def player_move(turn): # function for player's move
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 
-def cpu_win(): # checks if cpu can win
+def cpu_win(): # function for player's move
 	global moveC
 	print moveC
-	if WinConditions[0] == (empty, cpu, cpu) or WinConditions[3] == (empty, cpu, cpu) or WinConditions[6] == (empty, cpu, cpu):
-		moveC = 0
-	if WinConditions[0] == (cpu, empty, cpu) or WinConditions[4] == (empty, cpu, cpu):
-		moveC = 1
-	if WinConditions[0] == (cpu, cpu, empty) or WinConditions[5] == (empty, cpu, cpu) or WinConditions[7] == (empty, cpu, cpu):
-		moveC = 2
-	if WinConditions[1] == (empty, cpu, cpu) or WinConditions[3] == (cpu, empty, cpu):
-		moveC = 3
-	if WinConditions[1] == (cpu, empty, cpu) or WinConditions[4] == (cpu, empty, cpu) or WinConditions[6] == (cpu, empty, cpu) or WinConditions[7] == (cpu, empty, cpu):
-		moveC = 4
-	if WinConditions[1] == (cpu, cpu, empty) or WinConditions[5] == (cpu, empty, cpu):
-		moveC = 5
-	if WinConditions[2] == (empty, cpu, cpu) or WinConditions[3] == (cpu, cpu, empty) or WinConditions[7] == (cpu, cpu, empty):
-		moveC = 6
-	if WinConditions[2] == (cpu, empty, cpu) or WinConditions[4] == (cpu, cpu, empty):
-		moveC = 7
-	if WinConditions[2] == (cpu, cpu, empty) or WinConditions[5] == (cpu, cpu, empty) or WinConditions[6] == (cpu, cpu, empty):
-		moveC = 8
+	for i in range(0, 8):
+		if WinConditions[i] == (empty, cpu, cpu) or WinConditions[i] == (cpu, empty, cpu) or WinConditions[i] == (cpu, cpu, empty):
+			for j in range(0, 9):
+				if S[j] == empty:
+					S[j] = order[turn]
+					k = 1
+				if WinConditions[i] == (cpu, cpu, cpu): 
+					moveC = j
+				if k == 1:
+					S[j] == empty
+					k = 0
 
 def cpu_block(): # checks if player can win
 	global moveC
 	print moveC
-	if WinConditions[0] == (empty, player, player) or WinConditions[3] == (empty, player, player) or WinConditions[6] == (empty, player, player):
-		moveC = 0
-	if WinConditions[0] == (player, empty, player) or WinConditions[4] == (empty, player, player):
-		moveC = 1
-	if WinConditions[0] == (player, player, empty) or WinConditions[5] == (empty, player, player) or WinConditions[7] == (empty, player, player):
-		moveC = 2
-	if WinConditions[1] == (empty, player, player) or WinConditions[3] == (player, empty, player):
-		moveC = 3
-	if WinConditions[1] == (player, empty, player) or WinConditions[4] == (player, empty, player) or WinConditions[6] == (player, empty, player) or WinConditions[7] == (player, empty, player):
-		moveC = 4
-	if WinConditions[1] == (player, player, empty) or WinConditions[5] == (player, empty, player):
-		moveC = 5
-	if WinConditions[2] == (empty, player, player) or WinConditions[3] == (player, player, empty) or WinConditions[7] == (player, player, empty):
-		moveC = 6
-	if WinConditions[2] == (player, empty, player) or WinConditions[4] == (player, player, empty):
-		moveC = 7
-	if WinConditions[2] == (player, player, empty) or WinConditions[5] == (player, player, empty) or WinConditions[6] == (player, player, empty):
-		moveC = 8
+	for i in range(0, 8):
+		if WinConditions[i] == (empty, player, player) or WinConditions[i] == (player, empty, player) or WinConditions[i] == (player, player, empty):
+			for j in range(0, 9):
+				k = 0
+				if S[j] == empty:
+					S[j] = order[turn]
+					k = 1
+				if WinConditions[i] == (player, player, player): 
+					moveC = j
+				if k == 1:
+					S[j] == empty
+					k = 0
 
 def cpu_restrictions(): # combines previous 2 restrictions into 1 function
 	print "Before cpu_block"
