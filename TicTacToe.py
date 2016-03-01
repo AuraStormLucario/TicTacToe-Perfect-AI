@@ -163,18 +163,10 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 		S[moveC * 2] = order[turn]
 		print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	if S[4] == player: # if player is center, cpu moves in opposite corner from turn 0
-		if S[0] == cpu:
-			S[8] = order[turn]
-			print "The Computer will go on space 9 index 8"
-		if S[2] == cpu:
-			S[6] = order[turn]
-			print "The Computer will go on space 7 index 6"
-		if S[6] == cpu:
-			S[2] = order[turn]
-			print "The Computer will go on space 3 index 2"
-		if S[8] == cpu:
-			S[0] = order[turn]
-			print "The Computer will go on space 1 index 0"
+		for moveC in range(0, 5):
+			if S[moveC * 2] == cpu and S[8 - (moveC * 2)] == empty: # block can only run once
+				S[8 - (moveC * 2)] = order[turn]
+				print "The Computer will go on space",9 - (moveC * 2),"index",8 - (moveC * 2)
 
 def cpu_move(turn): # cpu move for turns > 2
 	global moveC
