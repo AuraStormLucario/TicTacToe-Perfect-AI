@@ -195,7 +195,7 @@ def main(turn): # combines function into complete game
 	print_board()
 	assign_winconditions()
 	while turn < 10: # gameplay runs in this loop
-		print "turn:",turn + 1
+		print "turn:",turn
 		if order[turn] == player:
 			player_move(turn)
 		if order[turn] == cpu:
