@@ -180,7 +180,7 @@ def cpu_move(turn): # cpu move for turns > 2
 
 def main(turn): # combines function into complete game
 	print_instructions()
-	assing_letter()
+	assign_letter()
 	assign_order()
 	print_board()
 	assign_winconditions()
