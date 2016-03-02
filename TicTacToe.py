@@ -179,8 +179,8 @@ def cpu_move_turn_four(turn):
 				S[moveC * 2] = order[turn]
 				print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	elif cpu == S[4]:
-		for moveC in range(2):
-			if S[moveC * 2] == player and S[8 - (moveC * 2)] == player: # cpu is center, player is 2 opposite corners
+		for moveC in range(0, 2, 2):
+			if S[moveC] == player and S[8 - moveC] == player: # cpu is center, player is 2 opposite corners
 				moveC = random.randint(0, 3)
 				while S[(moveC * 2) + 1] is not empty:
 					moveC = random.randint(0, 3)
@@ -254,8 +254,9 @@ Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 - Change tabs to 4 spaces
 - Make all lines < 80 characters (comments < 72)
 
-# for i in range(x, y) is x <= i < y
+# for i in range(x, y, step) is x <= i < y
 # i = random.randint(x, y) is x <= i <= y
+# i = random.randrange(x, y, step) is x <= i < y
 '''
 
 '''
