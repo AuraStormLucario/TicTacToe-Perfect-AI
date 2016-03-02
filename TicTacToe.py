@@ -57,12 +57,13 @@ def assign_order(): # randomly chooses order of turns
 	choice = random.choice('XO')
 	print choice + " will go first"
 	if choice == X:
-		order = [" ", X, O, X, O, X, O, X, O, X]
+		order = [X, O, X, O, X, O, X, O, X]
 	if choice == O:
-		order = [" ", O, X, O, X, O, X, O, X, O]
+		order = [O, X, O, X, O, X, O, X, O]
 	print order,"is the order."
 	print player + " is the player."
 	print cpu + " is the cpu."
+	order.insert(0, empty) # compesnate for turn = 1, make order index start at 1
 
 def check_win(): # checks if there is winner
 	global winner
