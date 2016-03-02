@@ -78,7 +78,6 @@ def check_win(): # checks if there is winner
 		i += 1
 
 def player_move(turn): # function for player's move
-	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range(1, 10) or S[int(moveP) - 1] is not empty:
 		moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
