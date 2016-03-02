@@ -67,7 +67,7 @@ def assign_order(): # randomly chooses order of turns
 def check_win(): # checks if there is winner
 	global winner
 	winner = empty
-	for i in range(0, 8):
+	for i in range(8):
 		if WinConditions[i] == (X, X, X):
 			winner = "X"
 			print winner + " wins using WinCondition",WinConditions[i],"index",i
@@ -79,7 +79,7 @@ def check_win(): # checks if there is winner
 def player_move(turn): # function for player's move
 	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
-	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
+	while not moveP.isdigit() or int(moveP) not in range(1, 10) or S[int(moveP) - 1] is not empty:
 		moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
@@ -164,14 +164,14 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 		S[moveC * 2] = order[turn]
 		print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	if S[4] == player: # if player is center, cpu moves in opposite corner from turn 0
-		for moveC in range(0, 4):
+		for moveC in range(5):
 			if S[moveC * 2] == cpu and S[8 - (moveC * 2)] == empty: # code block can only run once
 				S[8 - (moveC * 2)] = order[turn]
 				print "The Computer will go on space",9 - (moveC * 2),"index",8 - (moveC * 2)
 
 def cpu_move_turn_four(turn):
 	if player == S[4]:
-		for moveC in range(0, 4):
+		for moveC in range(5):
 			if S[moveC * 2] == player and S[8 - (moveC * 2)] == cpu: # player is center and corner, cpu is opposite corner
 				moveC = random.randint(0, 4)
 				while S[moveC * 2] is not empty or moveC == 2:
@@ -179,7 +179,7 @@ def cpu_move_turn_four(turn):
 				S[moveC * 2] = order[turn]
 				print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
 	elif cpu == S[4]:
-		for moveC in range(0, 1):
+		for moveC in range(2):
 			if S[moveC * 2] == player and S[8 - (moveC * 2)] == player: # cpu is center, player is 2 opposite corners
 				moveC = random.randint(0, 3)
 				while S[(moveC * 2) + 1] is not empty:
@@ -253,6 +253,9 @@ Issues:
 Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 - Change tabs to 4 spaces
 - Make all lines < 80 characters (comments < 72)
+
+# for i in range(x, y) is x <= i < y
+# i = random.randint(x, y) is x <= i <= y
 '''
 
 '''
