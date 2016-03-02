@@ -171,21 +171,23 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 
 def cpu_move_turn_four(turn):
 	if player == S[4]:
-		for moveC in range(0, 9, 2):
-			if S[moveC] == player and S[8 - moveC] == cpu: # player is center and corner, cpu is opposite corner
+		if (S[0] == player and S[8] == cpu) or (S[2] == player and S[6] == cpu) or (S[6] == player and S[2] == cpu) or (S[8] == player and S[0] == cpu): # player is center and corner, cpu is opposite corner
+			moveC = random.randrange(0, 9, 2)
+			while S[moveC] is not empty or moveC == 4:
 				moveC = random.randrange(0, 9, 2)
-				while S[moveC] is not empty or moveC == 4:
-					moveC = random.randrange(0, 9, 2)
-				S[moveC] = order[turn]
-				print "The Computer will go on space",moveC + 1,"index",moveC
+			S[moveC] = order[turn]
+			print "The Computer will go on space",moveC + 1,"index",moveC
+		else:
+			cpu_move(turn)
 	elif cpu == S[4]:
-		for moveC in range(0, 2, 2):
-			if S[moveC] == player and S[8 - moveC] == player: # cpu is center, player is 2 opposite corners
+		if ((S[0] and S[8]) == player or (S[2] and S[6]) == player): # cpu is center, player is 2 opposite corners
+			moveC = random.randrange(1, 8, 2)
+			while S[moveC] is not empty:
 				moveC = random.randrange(1, 8, 2)
-				while S[moveC] is not empty:
-					moveC = random.randrange(1, 8, 2)
-				S[moveC] = order[turn]
-				print "The Computer will go on space",moveC + 1,"index",moveC
+			S[moveC] = order[turn]
+			print "The Computer will go on space",moveC + 1,"index",moveC
+		else:
+			cpu_move(turn)
 	else:
 		cpu_move(turn)
 
