@@ -172,7 +172,7 @@ def cpu_move_turn_four(turn):
 			moveC = random.randrange(0, 9, 2)
 			while S[moveC] is not empty or moveC == 4:
 				moveC = random.randrange(0, 9, 2)
-			S[moveC] = order[turn]
+			S[moveC] = order[turn] # plays on corner
 			print "The Computer will go on space",moveC + 1,"index",moveC
 		else:
 			cpu_move(turn)
@@ -181,7 +181,13 @@ def cpu_move_turn_four(turn):
 			moveC = random.randrange(1, 8, 2)
 			while S[moveC] is not empty:
 				moveC = random.randrange(1, 8, 2)
-			S[moveC] = order[turn]
+			S[moveC] = order[turn] # plays on edge
+			print "The Computer will go on space",moveC + 1,"index",moveC
+		elif ((S[1] and S[7]) == player or (S[3] and S[5]) == player): # cpu is center, player is 2 opposite edges
+			moveC = random.randrange(0, 9, 2)
+			while S[moveC] is not empty or moveC == 4:
+				moveC = random.randrange(0, 9, 2)
+			S[moveC] = order[turn] # plays on corner
 			print "The Computer will go on space",moveC + 1,"index",moveC
 		else:
 			cpu_move(turn)
@@ -259,31 +265,32 @@ player plays corner
 		player plays opposite corner (to player)
 			cpu plays any edge							case
 		player plays adjacent corner (to player)
-			cpu plays edge between player corners		case (check_win)
+			cpu plays edge between player corners		check_win
 		player plays opposite edge (to player)
-
+#
 		player plays adjacent edge (to player)
+			cpu plays corner blocking player			check_win
 
 player plays edge
 	cpu plays center
 		player plays opposite corner (to player)
-			cpu plays adjacent corner (to player)
+#														case
 		player plays adjacent corner (to player)
-			cpu plays corner blocking cpu				check_win
+			cpu plays corner blocking player			check_win
 		player plays opposite edge (to player)
-
+			cpu plays corner							case
 		player plays adjacent edge (to player)
-
+#														case
 
 player plays center
 	cpu plays corner 
 		player plays opposite corner (to cpu)
 			cpu plays corners							case
 		player plays adjacent corner (to cpu)
-			cpu plays empty adjacent corner (to cpu)	check_win
 		player plays opposite edge (to cpu)
-
 		player plays adjacent edge (to cpu)
+			cpu plays corner blocking player			check_win
+
 
 cpu plays corner
 	player plays corner
@@ -292,9 +299,9 @@ cpu plays corner
 		cpu plays center
 	player plays adjacent edge (to cpu)
 		cpu plays center
-			EXTRA
-			player plays opposite corner (to cpu) blocks win
-				cpu plays empty adjacent edge (to cpu)
+#			EXTRA
+#			player plays opposite corner (to cpu) blocks win
+#				cpu plays empty adjacent edge (to cpu)
 	player plays center
 		cpu plays opposite corner (to cpu)
 '''
