@@ -64,7 +64,7 @@ def assign_order(): # randomly chooses order of turns
 	print player + " is the player."
 	print cpu + " is the cpu."
 
-def check_win():
+def check_win(): # checks if there is winner
 	global winner
 	winner = empty
 	for i in range(0, 8):
@@ -76,7 +76,7 @@ def check_win():
 			print winner + " wins using WinCondition",WinConditions[i]
 		i += 1
 
-def player_move(turn): 
+def player_move(turn): # function for player's move
 	global moveP
 	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
 	while not moveP.isdigit() or int(moveP) not in range (1, 10) or S[int(moveP) - 1] is not empty:
@@ -84,7 +84,7 @@ def player_move(turn):
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 
-def cpu_win(): # function for player's move
+def cpu_win(): # checks if cpu can win
 	global moveC
 	print moveC
 	for i in range(0, 8):
@@ -205,6 +205,7 @@ Issues:
 	- cpu_win()
 	- cpu_block()
 	- main(turn)
+- Make order[turn] and player/cpu consistent
 
 Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 - Change tabs to 4 spaces
