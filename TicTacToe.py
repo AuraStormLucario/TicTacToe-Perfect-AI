@@ -136,7 +136,7 @@ def cpu_restrictions(): # combines previous 2 restrictions into 1 function
 
 def cpu_move_turn_one(turn): # cpu move for turn 0, corner
 	moveC = random.randrange(0, 9, 2)
-	while S[moveC] is not empty or moveC == 4:
+	while (S[moveC] != empty) or moveC == 4:
 		moveC = random.randrange(0, 9, 2)
 	print moveC,"is random intiger"
 	S[moveC] = order[turn]
@@ -156,7 +156,7 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 		print "The Computer will go on space 5 index 4"
 	if (S[0] or S[2] or S[6] or S[8]) == player: # if player is corner, cpu moves in corner
 		moveC = random.randrange(0, 9, 2)
-		while S[moveC] is not empty or moveC == 4:
+		while (S[moveC] != empty) or moveC == 4:
 			moveC = random.randrange(0, 9, 2)
 		S[moveC] = order[turn]
 		print "The Computer will go on space",moveC + 1,"index",moveC
@@ -170,7 +170,7 @@ def cpu_move_turn_four(turn):
 	if player == S[4]:
 		if (S[0] == player and S[8] == cpu) or (S[2] == player and S[6] == cpu) or (S[6] == player and S[2] == cpu) or (S[8] == player and S[0] == cpu): # player is center and corner, cpu is opposite corner
 			moveC = random.randrange(0, 9, 2)
-			while S[moveC] is not empty or moveC == 4:
+			while (S[moveC] != empty) or moveC == 4:
 				moveC = random.randrange(0, 9, 2)
 			S[moveC] = order[turn] # plays on corner
 			print "The Computer will go on space",moveC + 1,"index",moveC
@@ -185,7 +185,7 @@ def cpu_move_turn_four(turn):
 			print "The Computer will go on space",moveC + 1,"index",moveC
 		elif ((S[1] and S[7]) == player or (S[3] and S[5]) == player): # cpu is center, player is 2 opposite edges
 			moveC = random.randrange(0, 9, 2)
-			while S[moveC] is not empty or moveC == 4:
+			while (S[moveC] != empty) or moveC == 4:
 				moveC = random.randrange(0, 9, 2)
 			S[moveC] = order[turn] # plays on corner
 			print "The Computer will go on space",moveC + 1,"index",moveC
