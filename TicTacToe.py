@@ -38,8 +38,8 @@ def assign_winconditions(): # array of win conditions
 		(S[0], S[4], S[8]), # dia1
 		(S[2], S[4], S[6]) # dia2
 	]
-	Corners = [S[0], S[2], S[6], S[8]]
-	Edges = [S[1], S[3], S[5], S[7]]
+	Corners = [0, 2, 6, 8]
+	Edges = [1, 3, 5, 7]
 
 def assign_letter(): # assigns chosen assign_letter to player
 	global player, cpu
@@ -171,6 +171,26 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 				S[8 - (moveC * 2)] = order[turn]
 				print "The Computer will go on space",9 - (moveC * 2),"index",8 - (moveC * 2)
 
+def cpu_move_turn_four(turn):
+	if player == S[4]:
+		for moveC in range(0, 4):
+			if S[moveC * 2] == player and S[8 - (moveC * 2)] == cpu: # player is center and corner, cpu is opposite corner
+				moveC = random.randint(0, 4)
+				while S[moveC * 2] is not empty or moveC == 2:
+					moveC = random.randint(0, 4)
+				S[moveC * 2] = order[turn]
+				print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+	elif cpu == S[4]:
+		for moveC in range(0, 1):
+			if S[moveC * 2] == player and S[8 - (moveC * 2)] == player: # cpu is center, player is 2 opposite corners
+				moveC = random.randint(0, 3)
+				while S[(moveC * 2) + 1] is not empty:
+					moveC = random.randint(0, 3)
+				S[(moveC * 2) + 1] = order[turn]
+				print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+	else:
+		cpu_move(turn)
+
 def cpu_move(turn): # cpu move for turns > 2
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
@@ -204,7 +224,9 @@ def main(turn): # combines function into complete game
 				cpu_move_turn_two(turn)
 			if turn == 3:
 				cpu_move_turn_three(turn)
-			if turn > 3:
+			if turn == 4:
+				cpu_move_turn_four(turn)
+			if turn > 4:
 				cpu_move(turn)
 		print_board()
 		assign_winconditions()
@@ -233,4 +255,50 @@ Issues:
 Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 - Change tabs to 4 spaces
 - Make all lines < 80 characters (comments < 72)
+'''
+
+'''
+player plays corner
+	cpu plays center
+		player plays opposite corner (to player)
+			cpu plays any edge							case
+		player plays adjacent corner (to player)
+			cpu plays edge between player corners		case (check_win)
+		player plays opposite edge (to player)
+
+		player plays adjacent edge (to player)
+
+player plays edge
+	cpu plays center
+		player plays opposite corner (to player)
+			cpu plays adjacent corner (to player)
+		player plays adjacent corner (to player)
+			cpu plays corner blocking cpu				check_win
+		player plays opposite edge (to player)
+
+		player plays adjacent edge (to player)
+
+
+player plays center
+	cpu plays corner 
+		player plays opposite corner (to cpu)
+			cpu plays corners							case
+		player plays adjacent corner (to cpu)
+			cpu plays empty adjacent corner (to cpu)	check_win
+		player plays opposite edge (to cpu)
+
+		player plays adjacent edge (to cpu)
+
+cpu plays corner
+	player plays corner
+		cpu plays corner
+	player plays opposite edge (to cpu)
+		cpu plays center
+	player plays adjacent edge (to cpu)
+		cpu plays center
+			EXTRA
+			player plays opposite corner (to cpu) blocks win
+				cpu plays empty adjacent edge (to cpu)
+	player plays center
+		cpu plays opposite corner (to cpu)
 '''
