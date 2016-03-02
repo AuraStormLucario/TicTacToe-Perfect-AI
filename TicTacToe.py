@@ -177,7 +177,13 @@ def cpu_move(turn): # cpu move for turns > 2
 	cpu_restrictions()
 	print movelist
 	print moveC,"Final Option for Move C"
-	if movelist == []:
+	if turn == 4 and Edges == [empty] * 4: # special case
+		moveC = random.randint(0, 3)
+		while S[moveC * 2] is not empty or moveC == 2:
+			moveC = random.randint(0, 3)
+		S[(moveC * 2) + 1] = order[turn]
+		print "The Computer will go on space",(moveC * 2) + 2,"index",(moveC * 2) + 1
+	elif movelist == []:
 		S[moveC] = order[turn]
 		print "The Computer will go on space",moveC + 1,"index",moveC
 	else:
