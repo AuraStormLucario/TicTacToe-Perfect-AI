@@ -138,54 +138,54 @@ def cpu_restrictions(): # combines previous 2 restrictions into 1 function
 	print "After cpu_block",movelist
 
 def cpu_move_turn_one(turn): # cpu move for turn 0, corner
-	moveC = random.randint(0, 4)
-	while S[moveC * 2] is not empty or moveC == 2:
-		moveC = random.randint(0, 4)
+	moveC = random.randrange(0, 9, 2)
+	while S[moveC] is not empty or moveC == 4:
+		moveC = random.randrange(0, 9, 2)
 	print moveC,"is random intiger"
-	S[moveC * 2] = order[turn]
-	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+	S[moveC] = order[turn]
+	print "The Computer will go on space",moveC + 1,"index",moveC
 
 def cpu_move_turn_two(turn): # cpu move for turn 1, center, if no center than corner
-	moveC = 2
-	while S[moveC * 2] is not empty:
-		moveC = random.randint(0, 4)
+	moveC = 4
+	while S[moveC] is not empty:
+		moveC = random.randrange(0, 9, 2)
 	print moveC,"is random intiger"
-	S[moveC * 2] = order[turn]
-	print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+	S[moveC] = order[turn]
+	print "The Computer will go on space",moveC + 1,"index",moveC
 
 def cpu_move_turn_three(turn): # cpu move for turn 2
 	if (S[1] or S[3] or S[5] or S[7]) == player: # if player is edge, cpu moves in center
 		S[4] = order[turn]
 		print "The Computer will go on space 5 index 4"
 	if (S[0] or S[2] or S[6] or S[8]) == player: # if player is corner, cpu moves in corner
-		moveC = random.randint(0, 4)
-		while S[moveC * 2] is not empty or moveC == 2:
-			moveC = random.randint(0, 4)
-		S[moveC * 2] = order[turn]
-		print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+		moveC = random.randrange(0, 9, 2)
+		while S[moveC] is not empty or moveC == 4:
+			moveC = random.randrange(0, 9, 2)
+		S[moveC] = order[turn]
+		print "The Computer will go on space",moveC + 1,"index",moveC
 	if S[4] == player: # if player is center, cpu moves in opposite corner from turn 0
-		for moveC in range(5):
-			if S[moveC * 2] == cpu and S[8 - (moveC * 2)] == empty: # code block can only run once
-				S[8 - (moveC * 2)] = order[turn]
-				print "The Computer will go on space",9 - (moveC * 2),"index",8 - (moveC * 2)
+		for moveC in range(0, 9, 2):
+			if S[moveC] == cpu and S[8 - moveC] == empty: # code block can only run once
+				S[8 - moveC] = order[turn]
+				print "The Computer will go on space",9 - moveC,"index",8 - moveC
 
 def cpu_move_turn_four(turn):
 	if player == S[4]:
-		for moveC in range(5):
-			if S[moveC * 2] == player and S[8 - (moveC * 2)] == cpu: # player is center and corner, cpu is opposite corner
-				moveC = random.randint(0, 4)
-				while S[moveC * 2] is not empty or moveC == 2:
-					moveC = random.randint(0, 4)
-				S[moveC * 2] = order[turn]
-				print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+		for moveC in range(0, 9, 2):
+			if S[moveC] == player and S[8 - moveC] == cpu: # player is center and corner, cpu is opposite corner
+				moveC = random.randrange(0, 9, 2)
+				while S[moveC] is not empty or moveC == 4:
+					moveC = random.randrange(0, 9, 2)
+				S[moveC] = order[turn]
+				print "The Computer will go on space",moveC + 1,"index",moveC
 	elif cpu == S[4]:
 		for moveC in range(0, 2, 2):
 			if S[moveC] == player and S[8 - moveC] == player: # cpu is center, player is 2 opposite corners
-				moveC = random.randint(0, 3)
-				while S[(moveC * 2) + 1] is not empty:
-					moveC = random.randint(0, 3)
-				S[(moveC * 2) + 1] = order[turn]
-				print "The Computer will go on space",(moveC * 2) + 1,"index",moveC * 2
+				moveC = random.randrange(1, 8, 2)
+				while S[moveC] is not empty:
+					moveC = random.randrange(1, 8, 2)
+				S[moveC] = order[turn]
+				print "The Computer will go on space",moveC + 1,"index",moveC
 	else:
 		cpu_move(turn)
 
