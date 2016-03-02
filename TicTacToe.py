@@ -12,18 +12,18 @@ def print_instructions():
 	print "This is a game of Tic Tac Toe, the computer will never lose."
 	print "Fill in spaces on the board according to the board printed below.\n"
 	print "  1 | 2 | 3"
-	print "  ---------"
+	print " ","-" * 9
 	print "  4 | 5 | 6"
-	print "  ---------"
+	print " ","-" * 9
 	print "  7 | 8 | 9\n"
 	print "If you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!"
 	print "Good luck!\n"
 
 def print_board(): # prints board
 	print "\n ",S[0],"|",S[1],"|",S[2]
-	print " ","---------"
+	print " ","-" * 9
 	print " ",S[3],"|",S[4],"|",S[5]
-	print " ","---------"
+	print " ","-" * 9
 	print " ",S[6],"|",S[7],"|",S[8],"\n"
 
 def assign_winconditions(): # array of win conditions
@@ -70,10 +70,10 @@ def check_win(): # checks if there is winner
 	for i in range(0, 8):
 		if WinConditions[i] == (X, X, X):
 			winner = "X"
-			print winner + " wins using WinCondition",WinConditions[i]
+			print winner + " wins using WinCondition",WinConditions[i],"index",i
 		if WinConditions[i] == (O, O, O):
 			winner = "O"
-			print winner + " wins using WinCondition",WinConditions[i]
+			print winner + " wins using WinCondition",WinConditions[i],"index",i
 		i += 1
 
 def player_move(turn): # function for player's move
@@ -85,43 +85,57 @@ def player_move(turn): # function for player's move
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 
 def cpu_win(): # checks if cpu can win
-	global moveC
-	print moveC
-	for i in range(0, 8):
-		if WinConditions[i] == (empty, cpu, cpu) or WinConditions[i] == (cpu, empty, cpu) or WinConditions[i] == (cpu, cpu, empty):
-			for j in range(0, 9):
-				k = 0
-				if S[j] == empty:
-					S[j] = order[turn]
-					k = 1
-				if WinConditions[i] == (cpu, cpu, cpu): 
-					moveC = j
-				if k == 1:
-					S[j] == empty
-					k = 0
+	global movelist
+	if WinConditions[0] == (empty, cpu, cpu) or WinConditions[3] == (empty, cpu, cpu) or WinConditions[6] == (empty, cpu, cpu):
+		movelist.append(0)
+	if WinConditions[0] == (cpu, empty, cpu) or WinConditions[4] == (empty, cpu, cpu):
+		movelist.append(1)
+	if WinConditions[0] == (cpu, cpu, empty) or WinConditions[5] == (empty, cpu, cpu) or WinConditions[7] == (empty, cpu, cpu):
+		movelist.append(2)
+	if WinConditions[1] == (empty, cpu, cpu) or WinConditions[3] == (cpu, empty, cpu):
+		movelist.append(3)
+	if WinConditions[1] == (cpu, empty, cpu) or WinConditions[4] == (cpu, empty, cpu) or WinConditions[6] == (cpu, empty, cpu) or WinConditions[7] == (cpu, empty, cpu):
+		movelist.append(4)
+	if WinConditions[1] == (cpu, cpu, empty) or WinConditions[5] == (cpu, empty, cpu):
+		movelist.append(5)
+	if WinConditions[2] == (empty, cpu, cpu) or WinConditions[3] == (cpu, cpu, empty) or WinConditions[7] == (cpu, cpu, empty):
+		movelist.append(6)
+	if WinConditions[2] == (cpu, empty, cpu) or WinConditions[4] == (cpu, cpu, empty):
+		movelist.append(7)
+	if WinConditions[2] == (cpu, cpu, empty) or WinConditions[5] == (cpu, cpu, empty) or WinConditions[6] == (cpu, cpu, empty):
+		movelist.append(8)
+	print movelist
 
 def cpu_block(): # checks if player can win
-	global moveC
-	print moveC
-	for i in range(0, 8):
-		if WinConditions[i] == (empty, player, player) or WinConditions[i] == (player, empty, player) or WinConditions[i] == (player, player, empty):
-			for j in range(0, 9):
-				k = 0
-				if S[j] == empty:
-					S[j] = order[turn]
-					k = 1
-				if WinConditions[i] == (player, player, player): 
-					moveC = j
-				if k == 1:
-					S[j] == empty
-					k = 0
+	global movelist
+	if WinConditions[0] == (empty, player, player) or WinConditions[3] == (empty, player, player) or WinConditions[6] == (empty, player, player):
+		movelist.append(0)
+	if WinConditions[0] == (player, empty, player) or WinConditions[4] == (empty, player, player):
+		movelist.append(1)
+	if WinConditions[0] == (player, player, empty) or WinConditions[5] == (empty, player, player) or WinConditions[7] == (empty, player, player):
+		movelist.append(2)
+	if WinConditions[1] == (empty, player, player) or WinConditions[3] == (player, empty, player):
+		movelist.append(3)
+	if WinConditions[1] == (player, empty, player) or WinConditions[4] == (player, empty, player) or WinConditions[6] == (player, empty, player) or WinConditions[7] == (player, empty, player):
+		movelist.append(4)
+	if WinConditions[1] == (player, player, empty) or WinConditions[5] == (player, empty, player):
+		movelist.append(5)
+	if WinConditions[2] == (empty, player, player) or WinConditions[3] == (player, player, empty) or WinConditions[7] == (player, player, empty):
+		movelist.append(6)
+	if WinConditions[2] == (player, empty, player) or WinConditions[4] == (player, player, empty):
+		movelist.append(7)
+	if WinConditions[2] == (player, player, empty) or WinConditions[5] == (player, player, empty) or WinConditions[6] == (player, player, empty):
+		movelist.append(8)
+	print movelist
 
 def cpu_restrictions(): # combines previous 2 restrictions into 1 function
-	print "Before cpu_block"
-	cpu_block()
-	print "Between cpu_win and cpu_block"
+	global movelist
+	movelist = [] # list of moves, optimal move inserted at begining
+	print movelist
 	cpu_win()
-	print "After cpu_win"
+	print "After cpu_win",movelist
+	cpu_block()
+	print "After cpu_block",movelist
 
 def cpu_move_turn_one(turn): # cpu move for turn 0, corner
 	moveC = random.randint(0, 4)
@@ -156,15 +170,20 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 				print "The Computer will go on space",9 - (moveC * 2),"index",8 - (moveC * 2)
 
 def cpu_move(turn): # cpu move for turns > 2
-	global moveC
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
 		moveC = random.randint(0, 8)
 	print moveC,"random move, placeholder"
 	cpu_restrictions()
+	print movelist
 	print moveC,"Final Option for Move C"
-	S[moveC] = order[turn]
-	print "The Computer will go on space",moveC + 1,"index",moveC
+	if movelist == []:
+		S[moveC] = order[turn]
+		print "The Computer will go on space",moveC + 1,"index",moveC
+	else:
+		moveC = movelist[0]
+		S[int(moveC)] = order[turn]
+		print "The Computer will go on space",int(moveC) + 1,"index",moveC
 
 def main(turn): # combines function into complete game
 	print_instructions()
@@ -200,7 +219,8 @@ main(turn)
 ''' 
 Issues:
 - Add function to recognize move that makes fork
-- Try to eliminate globals variables
+- Add cpu_move_turn_four()
+- Try to eliminate global variables
 - Simplify Functions]
 	- assign_letter()
 	- cpu_win()
