@@ -38,8 +38,6 @@ def assign_winconditions(): # array of win conditions
 		(S[0], S[4], S[8]), # dia1
 		(S[2], S[4], S[6]) # dia2
 	]
-	Corners = [0, 2, 6, 8]
-	Edges = [1, 3, 5, 7]
 
 def assign_letter(): # assigns chosen assign_letter to player
 	global player, cpu
