@@ -104,7 +104,6 @@ def cpu_win(): # checks if cpu can win
 		movelist.append(7)
 	if WinConditions[2] == (cpu, cpu, empty) or WinConditions[5] == (cpu, cpu, empty) or WinConditions[6] == (cpu, cpu, empty):
 		movelist.append(8)
-	print movelist
 
 def cpu_block(): # checks if player can win
 	global movelist
@@ -126,12 +125,10 @@ def cpu_block(): # checks if player can win
 		movelist.append(7)
 	if WinConditions[2] == (player, player, empty) or WinConditions[5] == (player, player, empty) or WinConditions[6] == (player, player, empty):
 		movelist.append(8)
-	print movelist
 
 def cpu_restrictions(): # combines previous 2 restrictions into 1 function
 	global movelist
 	movelist = [] # list of moves, optimal move inserted at begining
-	print movelist
 	cpu_win()
 	print "After cpu_win",movelist
 	cpu_block()
@@ -195,17 +192,12 @@ def cpu_move(turn): # cpu move for turns > 2
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
 		moveC = random.randint(0, 8)
-	print moveC,"random move, placeholder"
 	cpu_restrictions()
-	print movelist
-	print moveC,"Final Option for Move C"
-	if movelist == []:
-		S[moveC] = order[turn]
-		print "The Computer will go on space",moveC + 1,"index",moveC
-	else:
-		moveC = movelist[0]
-		S[int(moveC)] = order[turn]
-		print "The Computer will go on space",int(moveC) + 1,"index",moveC
+	movelist.append(moveC)
+	print "after random number",movelist
+	moveC = movelist[0]
+	S[int(moveC)] = order[turn]
+	print "The Computer will go on space",int(moveC) + 1,"index",moveC
 
 def main(turn): # combines function into complete game
 	print_instructions()
