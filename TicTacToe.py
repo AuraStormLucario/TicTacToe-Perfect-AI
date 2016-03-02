@@ -90,6 +90,7 @@ def cpu_win(): # checks if cpu can win
 	for i in range(0, 8):
 		if WinConditions[i] == (empty, cpu, cpu) or WinConditions[i] == (cpu, empty, cpu) or WinConditions[i] == (cpu, cpu, empty):
 			for j in range(0, 9):
+				k = 0
 				if S[j] == empty:
 					S[j] = order[turn]
 					k = 1
