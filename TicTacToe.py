@@ -194,6 +194,13 @@ def cpu_move_turn_four(turn): # cpu move for turn 4
 	else:
 		cpu_move(turn)
 
+def cpu_move_turn_five(turn):
+	# cpu plays corner, player plays adjacent edge, cpu plays center, player plays opposite corner (to cpu), 
+	if 0 == 1:
+		moveC = 2
+	else:
+		cpu_move(turn)
+
 def cpu_move(turn): # cpu move for turns > 2
 	moveC = random.randint(0, 8)
 	while S[moveC] is not empty:
@@ -218,13 +225,15 @@ def main(turn): # combines function into complete game
 		if order[turn] == cpu:
 			if turn == 1:
 				cpu_move_turn_one(turn)
-			if turn == 2:
+			elif turn == 2:
 				cpu_move_turn_two(turn)
-			if turn == 3:
+			elif turn == 3:
 				cpu_move_turn_three(turn)
-			if turn == 4:
+			elif turn == 4:
 				cpu_move_turn_four(turn)
-			if turn > 4:
+			elif turn == 5:
+				cpu_move_turn_five(turn)
+			else:
 				cpu_move(turn)
 		print_board()
 		assign_winconditions()
