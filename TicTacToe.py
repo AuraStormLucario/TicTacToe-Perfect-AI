@@ -135,6 +135,7 @@ def cpu_block():  # checks if player can win
     if WinConditions[2] == (player, player, empty) or WinConditions[5] == (player, player, empty) or WinConditions[6] == (player, player, empty):
         movelist.append(8)
 
+
 def cpu_move_turn_one(turn):  # cpu move for turn 1, corner
     moveC = random.randrange(0, 9, 2)
     while (S[moveC] != empty) or moveC == 4:
