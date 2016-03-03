@@ -135,16 +135,6 @@ def cpu_block():  # checks if player can win
     if WinConditions[2] == (player, player, empty) or WinConditions[5] == (player, player, empty) or WinConditions[6] == (player, player, empty):
         movelist.append(8)
 
-
-def cpu_restrictions():  # combines previous 2 restrictions into 1 function
-    global movelist
-    movelist = []  # list of moves, optimal move inserted at begining
-    cpu_win()
-    print "After cpu_win", movelist
-    cpu_block()
-    print "After cpu_block", movelist
-
-
 def cpu_move_turn_one(turn):  # cpu move for turn 1, corner
     moveC = random.randrange(0, 9, 2)
     while (S[moveC] != empty) or moveC == 4:
@@ -218,12 +208,17 @@ def cpu_move_turn_five(turn):
 
 
 def cpu_move(turn):  # cpu move for turns > 2
+    global movelist
+    movelist = []  # list of moves, optimal move inserted at start
     moveC = random.randint(0, 8)
     while S[moveC] is not empty:
         moveC = random.randint(0, 8)
-    cpu_restrictions()
     movelist.append(moveC)
     print "after random number", movelist
+    cpu_win()
+    print "After cpu_win", movelist
+    cpu_block()
+    print "After cpu_block", movelist
     moveC = movelist[0]
     S[int(moveC)] = order[turn]
     print "The Computer will go on space", int(moveC) + 1, "index", moveC
