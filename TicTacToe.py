@@ -134,7 +134,7 @@ def cpu_restrictions(): # combines previous 2 restrictions into 1 function
 	cpu_block()
 	print "After cpu_block",movelist
 
-def cpu_move_turn_one(turn): # cpu move for turn 0, corner
+def cpu_move_turn_one(turn): # cpu move for turn 1, corner
 	moveC = random.randrange(0, 9, 2)
 	while (S[moveC] != empty) or moveC == 4:
 		moveC = random.randrange(0, 9, 2)
@@ -142,7 +142,7 @@ def cpu_move_turn_one(turn): # cpu move for turn 0, corner
 	S[moveC] = order[turn]
 	print "The Computer will go on space",moveC + 1,"index",moveC
 
-def cpu_move_turn_two(turn): # cpu move for turn 1, center, if no center than corner
+def cpu_move_turn_two(turn): # cpu move for turn 2, center, if no center than corner
 	moveC = 4
 	while S[moveC] is not empty:
 		moveC = random.randrange(0, 9, 2)
@@ -150,11 +150,11 @@ def cpu_move_turn_two(turn): # cpu move for turn 1, center, if no center than co
 	S[moveC] = order[turn]
 	print "The Computer will go on space",moveC + 1,"index",moveC
 
-def cpu_move_turn_three(turn): # cpu move for turn 2
-	if (S[1] or S[3] or S[5] or S[7]) == player: # if player is edge, cpu moves in center
+def cpu_move_turn_three(turn): # cpu move for turn 3
+	if S[1] == player or S[3] == player or S[5] == player or S[7] == player: # if player is edge, cpu moves in center
 		S[4] = order[turn]
 		print "The Computer will go on space 5 index 4"
-	if (S[0] or S[2] or S[6] or S[8]) == player: # if player is corner, cpu moves in corner
+	if S[0] == player or S[2] == player or S[6] == player or S[8] == player: # if player is corner, cpu moves in corner
 		moveC = random.randrange(0, 9, 2)
 		while (S[moveC] != empty) or moveC == 4:
 			moveC = random.randrange(0, 9, 2)
@@ -166,7 +166,7 @@ def cpu_move_turn_three(turn): # cpu move for turn 2
 				S[8 - moveC] = order[turn]
 				print "The Computer will go on space",9 - moveC,"index",8 - moveC
 
-def cpu_move_turn_four(turn):
+def cpu_move_turn_four(turn): # cpu move for turn 4
 	if player == S[4]:
 		if (S[0] == player and S[8] == cpu) or (S[2] == player and S[6] == cpu) or (S[6] == player and S[2] == cpu) or (S[8] == player and S[0] == cpu): # player is center and corner, cpu is opposite corner
 			moveC = random.randrange(0, 9, 2)
