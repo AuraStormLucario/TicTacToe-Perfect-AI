@@ -42,13 +42,13 @@ def assign_winconditions(): # array of win conditions
 def assign_letter(): # assigns chosen assign_letter to player
 	global player, cpu
 	cpu = empty
-	player = raw_input('What assign_letter would you like to be: ')
-	while not (player == "X" or player == "O" or player == "x" or player == "o"):
-		player = raw_input('What assign_letter would you like to be: ')
+	player = raw_input("What assign_letter would you like to be: ")
+	while not (player == 'X' or player == 'O' or player == 'x' or player == 'o'):
+		player = raw_input("What assign_letter would you like to be: ")
 	if player == X or player == 'x':
 		player = X
 		cpu = O
-	if player == O or player == "o":
+	if player == O or player == 'o':
 		player = O
 		cpu = X
 
@@ -70,10 +70,10 @@ def check_win(): # checks if there is winner
 	winner = empty
 	for i in range(8):
 		if WinConditions[i] == (X, X, X):
-			winner = "X"
+			winner = X
 			print winner + " wins using WinCondition",WinConditions[i],"index",i
 		if WinConditions[i] == (O, O, O):
-			winner = "O"
+			winner = O
 			print winner + " wins using WinCondition",WinConditions[i],"index",i
 		i += 1
 
