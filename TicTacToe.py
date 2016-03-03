@@ -260,6 +260,13 @@ Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 '''
 
 '''
+	Cases to code
+player plays corner, cpu plays center, player plays opposite edge (to player)
+player plays edge, cpu plays center, player plays opposite corner (to player)
+player plays edge, cpu plays center, player plays adjacent edge (to player)
+cpu plays corner, player plays adjacent edge, cpu plays center, player plays opposite corner (to cpu), 
+
+
 player plays corner
 	cpu plays center
 		player plays opposite corner (to player)
