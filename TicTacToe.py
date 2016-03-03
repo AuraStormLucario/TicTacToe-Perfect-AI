@@ -42,9 +42,9 @@ def assign_winconditions(): # array of win conditions
 def assign_letter(): # assigns chosen assign_letter to player
 	global player, cpu
 	cpu = empty
-	player = raw_input('What assign_letter would you like to be: ')
+	player = raw_input("What assign_letter would you like to be: ")
 	while not (player == 'X' or player == 'O' or player == 'x' or player == 'o'):
-		player = raw_input('What assign_letter would you like to be: ')
+		player = raw_input("What assign_letter would you like to be: ")
 	if player == X or player == 'x':
 		player = X
 		cpu = O
@@ -78,9 +78,9 @@ def check_win(): # checks if there is winner
 		i += 1
 
 def player_move(turn): # function for player's move
-	moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
+	moveP = raw_input("Choose a Space from 1-9 for " + player + " to Go: ")
 	while not moveP.isdigit() or int(moveP) not in range(1, 10) or S[int(moveP) - 1] is not empty:
-		moveP = raw_input('Choose a Space from 1-9 for ' + player + ' to Go: ')
+		moveP = raw_input("Choose a Space from 1-9 for " + player + " to Go: ")
 	S[int(moveP) - 1] = order[turn]
 	print "The Player has gone on space",moveP,"index",int(moveP) - 1
 
@@ -258,6 +258,7 @@ Issues:
 	- cpu_block()
 	- main(turn)
 - Make order[turn] and player/cpu consistent
+- Double quotes for visual strings, single quotes for everything else
 
 Stylizing (https://www.python.org/dev/peps/pep-0008/#introduction):
 - Change tabs to 4 spaces
