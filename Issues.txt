@@ -61,8 +61,13 @@ player plays center
 
 
 cpu plays corner
-	player plays corner
+	player plays opposite corner (to cpu)
 		cpu plays corner
+#			EXTRA
+#			player plays edge blocking cpu
+#				cpu plays corner
+	player plays adjacent center (to cpu)
+#		cpu plays opposite corner (to cpu)
 	player plays opposite edge (to cpu)
 		cpu plays center
 	player plays adjacent edge (to cpu)

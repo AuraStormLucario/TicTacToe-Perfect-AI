@@ -206,21 +206,22 @@ def cpu_move_turn_four(turn):  # cpu move for turn 4
 
 def cpu_move_turn_five(turn):
     # cpu plays corner, player plays adjacent edge, cpu plays center, player plays opposite corner (to cpu)
+    # cpu plays corner, player plays opposite corner, cpu plays adjacent corner, plays edge blocking cpu
     cpu_move(turn)
 
 
 def cpu_move(turn):  # cpu move for turns > 2
     global movelist
     movelist = []  # list of moves, optimal move inserted at start
-    moveC = random.randint(0, 8)
-    while S[moveC] is not empty:
-        moveC = random.randint(0, 8)
-    movelist.append(moveC)
-    print "after random number", movelist
+    randommoveC = random.randint(0, 8)
+    while S[randommoveC] is not empty:
+        randommoveC = random.randint(0, 8)
     cpu_win()
     print "After cpu_win", movelist
     cpu_block()
     print "After cpu_block", movelist
+    movelist.append(randommoveC)
+    print "after random number", movelist
     moveC = movelist[0]
     S[int(moveC)] = order[turn]
     print "The Computer will go on space", int(moveC) + 1, "index", moveC
