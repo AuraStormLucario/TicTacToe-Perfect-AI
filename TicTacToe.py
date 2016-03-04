@@ -176,7 +176,8 @@ def cpu_move_turn_four(turn):  # cpu move for turn 4
     # player plays edge, cpu plays center, player plays opposite corner (to player)
     # player plays edge, cpu plays center, player plays adjacent edge (to player)
     if player == S[4]:
-        if (S[0] == player and S[8] == cpu) or (S[2] == player and S[6] == cpu) or (S[6] == player and S[2] == cpu) or (S[8] == player and S[0] == cpu):  # player is center and corner, cpu is opposite corner
+        if (S[0] == player and S[8] == cpu) or (S[2] == player and S[6] == cpu) or (S[6] == player and S[2] == cpu) or (S[8] == player and S[0] == cpu):  
+        # player is center and corner, cpu is opposite corner
             moveC = random.randrange(0, 9, 2)
             while (S[moveC] != empty) or moveC == 4:
                 moveC = random.randrange(0, 9, 2)
