@@ -158,13 +158,22 @@ def cpu_move_turn_three(turn):  # cpu move for turn 3
     if S[1] == player or S[3] == player or S[5] == player or S[7] == player:  # if player is edge, cpu moves in center
         S[4] = order[turn]
         print "The Computer will go on space 5 index 4"
-    if S[0] == player or S[2] == player or S[6] == player or S[8] == player:  # if player is corner, cpu moves in corner
-        moveC = random.randrange(0, 9, 2)
-        while (S[moveC] != empty) or moveC == 4:
-            moveC = random.randrange(0, 9, 2)
-        S[moveC] = order[turn]
-        print "The Computer will go on space", moveC + 1, "index", moveC
-    if S[4] == player:  # if player is center, cpu moves in opposite corner from turn 0
+    if S[0] == player or S[2] == player or S[6] == player or S[8] == player:  # if player is corner, cpu moves in corner (opposite to cpu if possible)
+        placeholder = False # variable to prevent if statement conditions from being true multiple times in loop
+        for moveC in range(0, 9, 2):
+            if S[moveC] == cpu and placeholder == False:
+                if S[8 - moveC] == empty:
+                    S[8 - moveC] = order[turn]
+                    print "The Computer will go on space", 9 - moveC, "index", 8 - moveC
+                    placeholder = True
+                if S[8 - moveC] == player:
+                    moveC = random.randrange(0, 9, 2)
+                    while (S[moveC] != empty) or moveC == 4:
+                        moveC = random.randrange(0, 9, 2)
+                    S[moveC] = order[turn]
+                    print "The Computer will go on space", moveC + 1, "index", moveC
+                    placeholder = True
+    if S[4] == player:  # if player is center, cpu moves in opposite corner
         for moveC in range(0, 9, 2):
             if S[moveC] == cpu and S[8 - moveC] == empty:  # code block can only run once
                 S[8 - moveC] = order[turn]
