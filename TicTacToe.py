@@ -43,12 +43,12 @@ def assign_winconditions():  # array of win conditions
     ]
 
 
-def assign_letter():  # assigns chosen assign_letter to player
+def assign_letter():  # assigns chosen letter to player
     global player, cpu
     cpu = empty
-    player = raw_input("What assign_letter would you like to be: ")
+    player = raw_input("What letter would you like to be: ")
     while not (player == 'X' or player == 'O' or player == 'x' or player == 'o'):
-        player = raw_input("What assign_letter would you like to be: ")
+        player = raw_input("What letter would you like to be: ")
     if player == X or player == 'x':
         player = X
         cpu = O
