@@ -10,23 +10,23 @@ turn = 1  # turn counter
 
 
 def print_instructions():  # prints instructions
-    print "This is a game of Tic Tac Toe, the computer will never lose."
-    print "Fill in spaces on the board according to the board printed below.\n"
-    print "  1 | 2 | 3"
-    print " ", "-" * 9
-    print "  4 | 5 | 6"
-    print " ", "-" * 9
-    print "  7 | 8 | 9\n"
-    print "If you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!"
-    print "Good luck!\n"
+    print ("This is a game of Tic Tac Toe, the computer will never lose.")
+    print ("Fill in spaces on the board according to the board printed below.\n")
+    print ("  1 | 2 | 3")
+    print (" ", "-" * 9)
+    print ("  4 | 5 | 6")
+    print (" ", "-" * 9)
+    print ("  7 | 8 | 9\n")
+    print ("If you get 3 of your leters in a row (horizontally, vertically, or diagonally), then you win!")
+    print ("Good luck!\n")
 
 
 def print_board():  # prints board
-    print "\n ", S[0], "|", S[1], "|", S[2]
-    print " ", "-" * 9
-    print " ", S[3], "|", S[4], "|", S[5]
-    print " ", "-" * 9
-    print " ", S[6], "|", S[7], "|", S[8], "\n"
+    print ("\n ", S[0], "|", S[1], "|", S[2])
+    print (" ", "-" * 9)
+    print (" ", S[3], "|", S[4], "|", S[5])
+    print (" ", "-" * 9)
+    print (" ", S[6], "|", S[7], "|", S[8], "\n")
 
 
 def assign_winconditions():  # array of win conditions
@@ -60,14 +60,14 @@ def assign_letter():  # assigns chosen letter to player
 def assign_order():  # randomly chooses order of turns
     global order
     choice = random.choice('XO')
-    print choice + " will go first"
+    print (choice + " will go first")
     if choice == X:
         order = [X, O, X, O, X, O, X, O, X]
     if choice == O:
         order = [O, X, O, X, O, X, O, X, O]
-    print order, "is the order."
-    print player + " is the player."
-    print cpu + " is the cpu."
+    print (order, "is the order.")
+    print (player + " is the player.")
+    print (cpu + " is the cpu.")
     order.insert(0, empty)  # compesnate for turn = 1, make order index start at 1
 
 
@@ -77,10 +77,10 @@ def check_win():  # checks if there is winner
     for i in range(8):
         if WinConditions[i] == (X, X, X):
             winner = X
-            print winner + " wins using WinCondition", WinConditions[i], "index", i
+            print (winner + " wins using WinCondition", WinConditions[i], "index", i)
         if WinConditions[i] == (O, O, O):
             winner = O
-            print winner + " wins using WinCondition", WinConditions[i], "index", i
+            print (winner + " wins using WinCondition", WinConditions[i], "index", i)
         i += 1
 
 
@@ -89,7 +89,7 @@ def player_move(turn):  # function for player's move
     while not moveP.isdigit() or int(moveP) not in range(1, 10) or S[int(moveP) - 1] is not empty:
         moveP = raw_input("Choose a Space from 1-9 for " + player + " to Go: ")
     S[int(moveP) - 1] = order[turn]
-    print "The Player has gone on space", moveP, "index", int(moveP) - 1
+    print ("The Player has gone on space", moveP, "index", int(moveP) - 1)
 
 
 def cpu_win():  # checks if cpu can win
@@ -140,44 +140,44 @@ def cpu_move_turn_one(turn):  # cpu move for turn 1, corner
     moveC = random.randrange(0, 9, 2)
     while (S[moveC] != empty) or moveC == 4:
         moveC = random.randrange(0, 9, 2)
-    print moveC, "is random intiger"
+    print (moveC, "is random intiger")
     S[moveC] = order[turn]
-    print "The Computer will go on space", moveC + 1, "index", moveC
+    print ("The Computer will go on space", moveC + 1, "index", moveC)
 
 
 def cpu_move_turn_two(turn):  # cpu move for turn 2, center, if no center than corner
     moveC = 4
     while S[moveC] is not empty:
         moveC = random.randrange(0, 9, 2)
-    print moveC, "is random intiger"
+    print (moveC, "is random intiger")
     S[moveC] = order[turn]
-    print "The Computer will go on space", moveC + 1, "index", moveC
+    print ("The Computer will go on space", moveC + 1, "index", moveC)
 
 
 def cpu_move_turn_three(turn):  # cpu move for turn 3
     if S[1] == player or S[3] == player or S[5] == player or S[7] == player:  # if player is edge, cpu moves in center
         S[4] = order[turn]
-        print "The Computer will go on space 5 index 4"
+        print ("The Computer will go on space 5 index 4")
     if S[0] == player or S[2] == player or S[6] == player or S[8] == player:  # if player is corner, cpu moves in corner (opposite to cpu if possible)
         placeholder = False # variable to prevent if statement conditions from being true multiple times in loop
         for moveC in range(0, 9, 2):
             if S[moveC] == cpu and placeholder == False:
                 if S[8 - moveC] == empty:
                     S[8 - moveC] = order[turn]
-                    print "The Computer will go on space", 9 - moveC, "index", 8 - moveC
+                    print ("The Computer will go on space", 9 - moveC, "index", 8 - moveC)
                     placeholder = True
                 if S[8 - moveC] == player:
                     moveC = random.randrange(0, 9, 2)
                     while (S[moveC] != empty) or moveC == 4:
                         moveC = random.randrange(0, 9, 2)
                     S[moveC] = order[turn]
-                    print "The Computer will go on space", moveC + 1, "index", moveC
+                    print ("The Computer will go on space", moveC + 1, "index", moveC)
                     placeholder = True
     if S[4] == player:  # if player is center, cpu moves in opposite corner
         for moveC in range(0, 9, 2):
             if S[moveC] == cpu and S[8 - moveC] == empty:  # code block can only run once
                 S[8 - moveC] = order[turn]
-                print "The Computer will go on space", 9 - moveC, "index", 8 - moveC
+                print ("The Computer will go on space", 9 - moveC, "index", 8 - moveC)
 
 
 def cpu_move_turn_four(turn):  # cpu move for turn 4
@@ -191,7 +191,7 @@ def cpu_move_turn_four(turn):  # cpu move for turn 4
             while (S[moveC] != empty) or moveC == 4:
                 moveC = random.randrange(0, 9, 2)
             S[moveC] = order[turn]  # plays on corner
-            print "The Computer will go on space", moveC + 1, "index", moveC
+            print ("The Computer will go on space", moveC + 1, "index", moveC)
         else:
             cpu_move(turn)
     elif cpu == S[4]:
@@ -200,13 +200,13 @@ def cpu_move_turn_four(turn):  # cpu move for turn 4
             while S[moveC] is not empty:
                 moveC = random.randrange(1, 8, 2)
             S[moveC] = order[turn]  # plays on edge
-            print "The Computer will go on space", moveC + 1, "index", moveC
+            print ("The Computer will go on space", moveC + 1, "index", moveC)
         elif ((S[1] and S[7]) == player or (S[3] and S[5]) == player):  # cpu is center, player is 2 opposite edges
             moveC = random.randrange(0, 9, 2)
             while (S[moveC] != empty) or moveC == 4:
                 moveC = random.randrange(0, 9, 2)
             S[moveC] = order[turn]  # plays on corner
-            print "The Computer will go on space", moveC + 1, "index", moveC
+            print ("The Computer will go on space", moveC + 1, "index", moveC)
         else:
             cpu_move(turn)
     else:
@@ -226,14 +226,14 @@ def cpu_move(turn):  # cpu move for turns > 2
     while S[randommoveC] is not empty:
         randommoveC = random.randint(0, 8)
     cpu_win()
-    print "After cpu_win", movelist
+    print ("After cpu_win", movelist)
     cpu_block()
-    print "After cpu_block", movelist
+    print ("After cpu_block", movelist)
     movelist.append(randommoveC)
-    print "after random number", movelist
+    print ("after random number", movelist)
     moveC = movelist[0]
     S[int(moveC)] = order[turn]
-    print "The Computer will go on space", int(moveC) + 1, "index", moveC
+    print ("The Computer will go on space", int(moveC) + 1, "index", moveC)
 
 
 def main(turn):  # combines function into complete game
@@ -243,7 +243,7 @@ def main(turn):  # combines function into complete game
     print_board()
     assign_winconditions()
     while turn < 10:  # gameplay runs in this loop
-        print "turn:", turn
+        print ("turn:", turn)
         if order[turn] == player:
             player_move(turn)
         if order[turn] == cpu:
@@ -265,8 +265,8 @@ def main(turn):  # combines function into complete game
         turn += 1
         if winner is not empty:
             turn = 10
-            print winner + " Is tne Winner!\n"
+            print (winner + " Is tne Winner!\n")
         if winner is empty and turn == 10:
-            print "The Game Is a Tie.\n"
+            print ("The Game Is a Tie.\n")
 
 main(turn)
